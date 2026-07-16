@@ -311,11 +311,13 @@ const THEMES = [
 
 // ============ 渲染 ============
 const app = document.getElementById("app");
-function escMath(t){
-  // 仅对 \(...\) 数学段内的 < > & 做 HTML 转义，避免浏览器把 -2<x<4 误解析为标签
-  return (t||"").replace(/\\\(([\s\S]*?)\\\)/g, function(_, inner){
-    return "\\(" + inner.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + "\\)";
-  });
+function safeHtml(t){
+  // 全局转义 < > & 防止 innerHTML 注入（浏览器会把 -2<x<4 当成标签吃掉）
+  // 然后仅恢复题干/解析中已知安全的 HTML 标签：<br> 和 <span class='ans'>
+  let s = (t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  s = s.replace(/&lt;br\s*\/?&gt;/gi,"<br>");
+  s = s.replace(/&lt;span\s+class=['"]ans['"]&gt;(.*?)&lt;\/span&gt;/gi,"<span class='ans'>$1</span>");
+  return s;
 }
 
 function render(filter){
@@ -331,9 +333,9 @@ function render(filter){
         const rtag = q.real ? `<span class="meta tag-real">真题</span>` : `<span class="meta tag-rep">典型</span>`;
         return `<div class="q">
           ${rtag}<span class="meta" style="background:#475569;margin-left:6px">${q.src}</span>
-          <div class="stem">${escMath(q.stem)}</div>
+          <div class="stem">${safeHtml(q.stem)}</div>
           <div class="btn" onclick="this.nextElementSibling.classList.toggle('show')">▸ 显示解析</div>
-          <div class="sol">${escMath(q.sol)}</div>
+          <div class="sol">${safeHtml(q.sol)}</div>
         </div>`;
       }).join("");
       let bodyHtml;
