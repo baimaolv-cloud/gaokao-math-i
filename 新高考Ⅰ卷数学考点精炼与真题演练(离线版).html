@@ -311,6 +311,13 @@ const THEMES = [
 
 // ============ 渲染 ============
 const app = document.getElementById("app");
+function escMath(t){
+  // 仅对 \(...\) 数学段内的 < > & 做 HTML 转义，避免浏览器把 -2<x<4 误解析为标签
+  return (t||"").replace(/\\\(([\s\S]*?)\\\)/g, function(_, inner){
+    return "\\(" + inner.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + "\\)";
+  });
+}
+
 function render(filter){
   app.innerHTML = "";
   THEMES.forEach(t=>{
@@ -324,9 +331,9 @@ function render(filter){
         const rtag = q.real ? `<span class="meta tag-real">真题</span>` : `<span class="meta tag-rep">典型</span>`;
         return `<div class="q">
           ${rtag}<span class="meta" style="background:#475569;margin-left:6px">${q.src}</span>
-          <div class="stem">${q.stem}</div>
+          <div class="stem">${escMath(q.stem)}</div>
           <div class="btn" onclick="this.nextElementSibling.classList.toggle('show')">▸ 显示解析</div>
-          <div class="sol">${q.sol}</div>
+          <div class="sol">${escMath(q.sol)}</div>
         </div>`;
       }).join("");
       let bodyHtml;
