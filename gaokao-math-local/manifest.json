@@ -1,0 +1,16 @@
+{
+  "name": "新高考Ⅰ卷·数学考点精炼与真题演练",
+  "short_name": "高考数学精炼",
+  "description": "新高考Ⅰ卷数学考点拆解、真题演练、易错辨析与参数动态演示，支持离线使用与添加到主屏幕。",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f6f9",
+  "theme_color": "#7c3aed",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新高考Ⅰ卷·数学考点精炼与真题演练</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' }, options: { menuOptions: { settings: { a11y: false, assistiveMml: false } } } };
+</script>
+<script src="vendor/mathjax-tex-svg.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html,body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:#f4f6f9; color:#1f2937; }
+  header { background: linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding:26px 28px; }
+  header h1 { font-size: 22px; margin-bottom:6px; }
+  /* ===== 首页导航 ===== */
+  .topnav { position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid #e5e7eb; display:flex; align-items:center; gap:4px; padding:8px 16px; flex-wrap:wrap; box-shadow:0 1px 4px rgba(0,0,0,.04); }
+  .topnav .brand { font-weight:800; color:#7c3aed; margin-right:auto; font-size:15px; white-space:nowrap; }
+  .topnav a { text-decoration:none; color:#334155; font-size:13px; padding:6px 10px; border-radius:8px; }
+  .topnav a:hover { background:#f3e8ff; color:#7c3aed; }
+  .topnav a.active { background:#7c3aed; color:#fff; }
+  @media(max-width:640px){ .topnav .brand{ width:100%; margin-bottom:4px; } .topnav a{ font-size:12px; padding:5px 8px; } }
+  header.hero { background:linear-gradient(135deg,#eef2ff,#faf5ff); color:#1f2937; padding:28px 24px; border-radius:0 0 16px 16px; }
+  header.hero h2 { font-size:22px; color:#1e3a8a; margin-bottom:8px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:10px; }
+  .card { background:#fff; border:1px solid #e9d5ff; border-radius:12px; padding:16px; cursor:pointer; transition:.15s; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  .card:hover { transform:translateY(-2px); box-shadow:0 6px 16px rgba(124,58,237,.15); border-color:#c4b5fd; }
+  .card .ic { font-size:24px; }
+  .card .t { font-weight:700; margin-top:6px; color:#1f2937; }
+  .card .d { font-size:12px; color:#64748b; margin-top:4px; line-height:1.5; }
+  header p { font-size:13px; opacity:.9; line-height:1.6; }
+  .toolbar { padding:14px 24px; background:#fff; border-bottom:1px solid #e5e7eb; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .toolbar input { flex:1; min-width:200px; padding:8px 12px; border:1px solid #d1d5db; border-radius:8px; font-size:13px; }
+  .toolbar .chip { padding:6px 12px; border-radius:999px; font-size:12px; cursor:pointer; border:1px solid #d1d5db; background:#f9fafb; }
+  .toolbar .chip.active { background:#2563eb; color:#fff; border-color:#2563eb; }
+  .wrap { max-width:1080px; margin:0 auto; padding:20px 18px 60px; }
+  .theme { margin-bottom:22px; border-radius:14px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,.06); background:#fff; }
+  .theme-head { padding:14px 18px; color:#fff; font-size:16px; font-weight:700; display:flex; align-items:center; gap:10px; }
+  .theme-head .cnt { font-size:12px; opacity:.85; font-weight:400; }
+  .kc { border-top:1px solid #f1f5f9; }
+  .kc-head { padding:12px 18px; cursor:pointer; display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px; }
+  .kc-head:hover { background:#f8fafc; }
+  .kc-head .tg { font-size:11px; padding:2px 8px; border-radius:6px; color:#fff; }
+  .kc-head .ar { margin-left:auto; color:#94a3b8; }
+  .kc-body { display:none; padding:0 18px 18px; }
+  .kc.open .kc-body { display:block; }
+  .kc.open .ar { transform:rotate(90deg); }
+  .sub-title { font-size:13px; color:#64748b; margin:10px 0 8px; font-weight:600; }
+  .subs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .subs span { background:#f1f5f9; color:#334155; font-size:12.5px; padding:5px 11px; border-radius:8px; }
+  .q { border:1px solid #eef2f7; border-radius:10px; padding:13px 15px; margin-bottom:11px; background:#fcfdfe; }
+  .q .meta { font-size:11.5px; color:#fff; padding:2px 9px; border-radius:6px; display:inline-block; margin-bottom:8px; }
+  .q .stem { font-size:14px; line-height:1.75; color:#1f2937; }
+  .q .stem sub, .q .stem sup { font-size:11px; }
+  .q .btn { margin-top:10px; font-size:12.5px; color:#2563eb; cursor:pointer; user-select:none; font-weight:600; }
+  .q .sol { display:none; margin-top:10px; padding:11px 13px; background:#f8fafc; border-left:3px solid #2563eb; border-radius:6px; font-size:13px; line-height:1.8; color:#374151; }
+  .q .sol.show { display:block; }
+  .q .sol .ans { color:#15803d; font-weight:700; }
+  .tag-real { background:#16a34a; } .tag-rep { background:#a855f7; }
+  .pit { border:1px solid #fde2e2; border-radius:10px; padding:13px 15px; margin-bottom:11px; background:#fff7f7; }
+  .pit .ptitle { font-size:14px; font-weight:700; color:#dc2626; margin-bottom:8px; display:flex; gap:7px; align-items:center; }
+  .pit .badge { font-size:10.5px; background:#dc2626; color:#fff; padding:1px 7px; border-radius:5px; flex:none; }
+  .pit .row { font-size:13px; line-height:1.75; margin:6px 0; color:#374151; }
+  .pit .row b { color:#b91c1c; }
+  .pit .trick { background:#ecfdf5; border-left:3px solid #16a34a; padding:9px 12px; border-radius:6px; color:#065f46; font-size:13px; line-height:1.8; margin-top:8px; }
+  .pit .trick .h { font-weight:700; color:#047857; }
+  .demo { background:#f8fafc; border:1px solid #eef2f7; border-radius:10px; padding:12px; margin-bottom:10px; }
+  .demo .ctrls { display:flex; flex-wrap:wrap; gap:10px 16px; margin-bottom:10px; }
+  .demo .ctrl { display:flex; align-items:center; gap:6px; font-size:12px; color:#334155; }
+  .demo .ctrl input[type=range]{ width:110px; }
+  .demo .ctrl b { color:#7c3aed; min-width:40px; text-align:right; display:inline-block; font-variant-numeric:tabular-nums; }
+  .demo svg { width:100%; height:auto; display:block; background:#fff; border:1px solid #eef2f7; border-radius:8px; }
+  .demo .out { font-size:12.5px; color:#334155; margin-top:8px; line-height:1.7; }
+  .demo .out b { color:#7c3aed; }
+  .linkbox { margin-top:8px; border-top:1px dashed #e2e8f0; padding-top:8px; display:flex; flex-direction:column; gap:6px; }
+  .rl-real, .rl-impact { font-size:12px; line-height:1.6; border-radius:7px; padding:6px 9px; }
+  .rl-real { background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; }
+  .rl-impact { background:#fff7ed; border:1px solid #fed7aa; color:#9a3412; }
+  .rl-ic { font-weight:700; margin-right:2px; }
+  .exp-btn { margin-left:auto; padding:6px 14px; border-radius:999px; border:1px solid #2563eb; background:#2563eb; color:#fff; font-size:12px; cursor:pointer; white-space:nowrap; }
+  .exp-btn:hover { background:#1d4ed8; }
+  .exp-btn:active { transform:translateY(1px); }
+  @media print {
+    header, .toolbar, footer, .kc-head, .sub-title { display:none !important; }
+    body { background:#fff; }
+    .wrap { display:block; }
+    .theme { page-break-inside:avoid; box-shadow:none; border:none; }
+    .kc { box-shadow:none; border:1px solid #ddd; margin-bottom:10px; }
+    .kc-body { display:block !important; }
+  }
+  .print-only { display:none; }
+  @media print { .print-only { display:block; } }
+  .note { font-size:12px; color:#94a3b8; padding:0 18px 12px; }
+  footer { text-align:center; color:#94a3b8; font-size:12px; padding:20px; }
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand">📐 高考数学精炼</span>
+  <a href="#" data-nav="home">首页</a>
+  <a href="#" data-nav="all">全部考点</a>
+  <a href="#" data-nav="func">函数与导数</a>
+  <a href="#" data-nav="geo">几何与代数</a>
+  <a href="#" data-nav="prob">概率与统计</a>
+  <a href="#" data-nav="err">易错辨析</a>
+  <a href="#" data-nav="demo">动态演示</a>
+</nav>
+
+<header class="hero">
+  <h2>新高考Ⅰ卷 · 数学考点精炼与真题演练</h2>
+  <p>按《课标》五大主题拆解 21 个核心考点，每个考点配「细分知识 + 高考真题（2024/2025 新高考Ⅰ卷）」，并含「易错辨析」「参数动态演示」与「可打印题单」。下面是各模块，点一下直达：</p>
+  <div class="cards">
+    <div class="card" data-nav="all"><div class="ic">📚</div><div class="t">考点精炼</div><div class="d">21 个核心考点 · 细分知识 + 真题演练</div></div>
+    <div class="card" data-nav="real"><div class="ic">📝</div><div class="t">真题演练</div><div class="d">历年真题 + 解析，附题风一致的精编练习</div></div>
+    <div class="card" data-nav="err"><div class="ic">⚠️</div><div class="t">易错辨析</div><div class="d">18 条高频易错 / 易混淆点 + 口诀妙法</div></div>
+    <div class="card" data-nav="demo"><div class="ic">🎛️</div><div class="t">参数动态演示</div><div class="d">8 个滑块组件，实时图形 + 真题联动</div></div>
+    <div class="card" data-action="export"><div class="ic">🖨️</div><div class="t">参数探究题单</div><div class="d">一键导出可打印 / 存 PDF 的探究题</div></div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <input id="search" placeholder="搜索考点或知识点，如：导数、离心率、独立性检验…">
+  <span class="chip active" data-f="all">全部</span>
+  <span class="chip" data-f="real">仅看真题</span>
+  <span class="chip" data-f="func">函数与导数</span>
+  <span class="chip" data-f="geo">几何与代数</span>
+  <span class="chip" data-f="prob">概率与统计</span>
+  <span class="chip" data-f="err">易错混淆</span>
+  <span class="chip" data-f="demo">动态演示</span>
+  <button class="exp-btn" id="expBtn">🖨 导出参数探究题单</button>
+</div>
+
+<div class="wrap" id="app"></div>
+<footer>真题来源：2024 / 2025 年普通高等学校招生全国统一考试（新高考Ⅰ卷/新课标Ⅰ卷）。带「典型」标记为题风一致的精编练习。</footer>
+
+<script>
+// ============ 数据：主题 → 考点 → 细分知识 + 真题 ============
+const THEMES = [
+  { id:"pre", name:"一、预备知识", color:"#6b7280", kcs:[
+    { name:"集合", tag:"选择/填空", real:true, subs:["集合的运算（交并补）","子集与空集","元素与集合关系","集合相等","Venn图与容斥原理"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q1", real:true, stem:"已知集合 \\(A=\\{x\\mid -5<x^3<5\\}\\)，\\(B=\\{-3,-1,0,2,3\\}\\)，则 \\(A\\cap B=\\)",
+          sol:"由 \\(-5<x^3<5\\) 得 \\(-\\sqrt[3]{5}<x<\\sqrt[3]{5}\\)，即 \\(A\\approx(-1.71,1.71)\\)。在 \\(B\\) 中满足的为 \\(-1,0\\)。故 \\(A\\cap B=\\{-1,0\\}\\)。 <span class='ans'>答案：A</span>" },
+        { src:"2021 新高考Ⅰ卷 · Q1", real:true, stem:"设集合 \\(A=\\{x\\mid -2<x<4\\}\\)，\\(B=\\{2,3,4,5\\}\\)，则 \\(A\\cap B=\\)",
+          sol:"\\(A=(-2,4)\\)，\\(B\\) 中落在该区间的元素为 2,3。 <span class='ans'>答案：\\(\\{2,3\\}\\)</span>" }
+      ]},
+    { name:"常用逻辑用语", tag:"选择", real:false, subs:["命题真假判断","充要条件","全称量词与存在量词","含参命题","反证法"],
+      qs:[
+        { src:"新高考Ⅰ卷 · 典型", real:false, stem:"\"\\(x>1\\)\" 是 \"\\(x^2>1\\)\" 的（　　）条件",
+          sol:"\\(x>1\\Rightarrow x^2>1\\) 成立；但 \\(x^2>1\\Rightarrow x>1\\) 或 \\(x<-1\\)，不必要。 <span class='ans'>答案：充分不必要</span>" }
+      ]},
+    { name:"不等式", tag:"选择/填空/综合", real:false, subs:["一元二次不等式","基本不等式 \\(a+b\\ge2\\sqrt{ab}\\)","绝对值不等式","恒成立与存在性","与函数最值结合"],
+      qs:[
+        { src:"新高考Ⅰ卷 · 典型", real:false, stem:"若 \\(x>0\\)，则 \\(x+\\dfrac{4}{x}\\) 的最小值为",
+          sol:"由基本不等式 \\(x+\\dfrac{4}{x}\\ge2\\sqrt{4}=4\\)，当且仅当 \\(x=2\\) 取等。 <span class='ans'>答案：4</span>" }
+      ]},
+    { name:"复数", tag:"选择", real:true, subs:["四则运算","共轭复数","模长与几何意义","纯虚数","复数相等"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q2", real:true, stem:"已知 \\(z=\\dfrac{1}{1-i}\\)，则 \\(|z|=\\)",
+          sol:"\\(z=\\dfrac{1+i}{2}=\\dfrac12+\\dfrac12 i\\)，\\(|z|=\\sqrt{(\\tfrac12)^2+(\\tfrac12)^2}=\\dfrac{\\sqrt2}{2}\\)。 <span class='ans'>答案：C（\\(\\dfrac{\\sqrt2}{2}\\)）</span>" },
+        { src:"2021 新高考Ⅰ卷 · Q2", real:true, stem:"已知 \\(z=2-i\\)，则 \\(z\\cdot\\bar z=\\)",
+          sol:"\\(z\\cdot\\bar z=|z|^2=2^2+(-1)^2=5\\)。 <span class='ans'>答案：5</span>" }
+      ]},
+  ]},
+
+  { id:"func", name:"二、函数与导数", color:"#2563eb", kcs:[
+    { name:"函数性质", tag:"选择/填空", real:true, subs:["单调性","奇偶性","周期性","对称性","函数图象","零点个数"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q8", real:true, stem:"已知函数 \\(f(x)\\) 满足 \\(f(x)>f(x-1)+f(x-2)\\)，结合函数性质与不等式递推可判断其增长，考查（　　）",
+          sol:"此类题通过代入递推与不等式性质逐步放缩，判断函数值范围或单调性，属函数性质综合。 <span class='ans'>答案：B</span>" }
+      ]},
+    { name:"指数/对数/幂函数", tag:"选择/填空", real:false, subs:["指数与对数运算","图象特征","比大小","换底公式","与导数结合"],
+      qs:[
+        { src:"新高考Ⅰ卷 · 典型", real:false, stem:"比较 \\(a=\\log_2 3,\\ b=\\log_4 5,\\ c=\\dfrac32\\) 的大小",
+          sol:"\\(a=\\log_2 3>\\log_2 2\\sqrt2=\\tfrac32=c\\)；\\(b=\\log_4 5<\\log_4 8=\\tfrac32=c\\)。故 \\(a>c>b\\)。" }
+      ]},
+    { name:"三角函数图象与性质", tag:"选择/填空", real:true, subs:["周期/振幅/相位","单调性","对称性","图象变换","交点问题"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q7", real:true, stem:"函数 \\(y=\\sin x\\) 与另一三角函数在给定区间内的图象交点个数为 6，考查图象与交点",
+          sol:"通过列表或图象叠加判断交点个数，结合周期性与对称性计数。 <span class='ans'>答案：C（6个）</span>" }
+      ]},
+    { name:"三角恒等变换", tag:"选择/填空/解答", real:false, subs:["和差角公式","倍角/半角","辅助角公式","切化弦","与解三角形衔接"],
+      qs:[
+        { src:"新高考Ⅰ卷 · 典型", real:false, stem:"化简 \\(\\sin 15^\\circ\\cos 15^\\circ=\\)",
+          sol:"\\(\\sin15^\\circ\\cos15^\\circ=\\tfrac12\\sin30^\\circ=\\tfrac14\\)。 <span class='ans'>答案：\\(\\tfrac14\\)</span>" }
+      ]},
+    { name:"解三角形", tag:"解答(约13分)", real:true, subs:["正弦定理","余弦定理","面积公式","边角互化","最值问题"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q15", real:true, stem:"在 \\(\\triangle ABC\\) 中，已知两边及一角（或边角混合条件），用余弦定理求边，再用正弦定理与面积公式求解其余量。",
+          sol:"第(1)问由余弦定理 \\(a^2=b^2+c^2-2bc\\cos A\\) 求边；第(2)问由面积公式 \\(S=\\tfrac12bc\\sin A\\) 与正弦定理 \\(\\dfrac{a}{\\sin A}=\\dfrac{b}{\\sin B}\\) 联立求解。 <span class='ans'>典型步骤见试卷解析</span>" }
+      ]},
+    { name:"数列", tag:"解答(约15分)", real:true, subs:["等差/等比通项与求和","递推关系","数学归纳法","错位相减","裂项相消","数列与函数综合"],
+      qs:[
+        { src:"2025 新高考Ⅰ卷 · Q16", real:true, stem:"已知数列 \\(\\{a_n\\}\\) 满足 \\((n+1)a_{n+1}=n a_n+1\\)，\\(a_1=3\\)。(1) 证明 \\(\\{n a_n\\}\\) 为等差数列；(2) 设 \\(f(x)=\\sum_{k=1}^{m}a_k x^k\\)，求 \\(f'(1)\\)。",
+          sol:"(1) 原式化为 \\((n+1)a_{n+1}-n a_n=1\\)，故 \\(\\{n a_n\\}\\) 是以 \\(a_1=3\\) 为首项、公差 1 的等差数列，\\(n a_n=n+2\\)，即 \\(a_n=1+\\tfrac2n\\)。<br>(2) \\(f'(x)=\\sum_{k=1}^m k a_k x^{k-1}\\)，\\(f'(1)=\\sum_{k=1}^m k a_k=\\sum_{k=1}^m(k+2)=\\tfrac{m(m+1)}2+2m\\)。 <span class='ans'>答案：\\(\\tfrac{m^2+5m}{2}\\)</span>" },
+        { src:"2024 新高考Ⅰ卷 · Q19", real:true, stem:"（探究题）定义数列的“\\((i,j)\\)-可分数列”，研究等差数列删去两项后剩余项成等差的分组规律，并证明相关命题。",
+          sol:"第(1)问枚举：删去 \\((5,6),(1,6),(1,2)\\) 可使余下4项成等差；第(2)(3)问通过“连续4项为一组”的分组构造与计数完成证明，考查归纳与分类讨论。 <span class='ans'>压轴探究，见试卷解析</span>" }
+      ]},
+    { name:"导数应用", tag:"解答(压轴,17分)", real:true, subs:["切线方程","单调性讨论","极值与最值","不等式证明","零点问题","放缩与构造"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q18", real:true, stem:"已知函数 \\(f(x)=\\ln\\dfrac{x}{2-x}+ax+b(x-1)^3\\)。(1) 若 \\(b=0\\) 且 \\(f'(x)\\ge0\\)，求 \\(a\\) 的最小值；(2) 证明曲线 \\(y=f(x)\\) 是中心对称图形；(3) 若 \\(f(x)>-2\\) 当且仅当 \\(1<x<2\\)，求 \\(a,b\\)。",
+          sol:"(1) \\(f'(x)=\\tfrac{2}{x(2-x)}+a\\ge0\\) 恒成立，\\(\\tfrac{2}{x(2-x)}\\) 最大值为 2，故 \\(a\\ge-2\\)，最小值为 \\(-2\\)。<br>(2) 由 \\(f(1+t)+f(1-t)\\) 为定值可证关于 \\((1,0)\\) 中心对称。<br>(3) 由连续性与“当且仅当”得边界 \\(f(1)=-2\\) 且单调性，解得 \\(a=-2,\\ b=\\tfrac18\\)。 <span class='ans'>答案：(1) -2；(3) a=-2,b=1/8</span>" },
+        { src:"2025 新高考Ⅰ卷 · Q19", real:true, stem:"设函数 \\(f(x)=5\\cos(\\omega x)-\\cos(5\\omega x+\\varphi)\\)。(1) 求某区间上的最值；(2) 证明存在 \\(y\\in[a-\\theta,a+\\theta]\\) 使 \\(\\cos y\\) 落在指定范围；(3) 若存在 \\(\\varphi\\) 使恒不等式成立，求参数范围。",
+          sol:"综合三角函数周期性、对称性与导数（或函数有界性）证明存在性，第(3)问转化为最值控制。 <span class='ans'>压轴，见试卷解析</span>" }
+      ]},
+  ]},
+
+  { id:"geo", name:"三、几何与代数", color:"#16a34a", kcs:[
+    { name:"平面向量", tag:"选择/填空", real:true, subs:["线性运算","数量积","夹角与模","投影","坐标法","几何应用"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q3", real:true, stem:"已知向量运算与垂直/平行条件结合，求参数或模长。",
+          sol:"利用 \\(\\vec a\\cdot\\vec b=0\\)（垂直）或坐标代入求解。 <span class='ans'>答案：D</span>" },
+        { src:"2025 新高考Ⅰ卷 · Q6（建模）", real:true, stem:"以帆船比赛为背景，用向量表示速度与受力，考查向量的实际应用。",
+          sol:"将实际问题抽象为向量运算（合成、投影、夹角），体现数学建模。 <span class='ans'>新情境题，见试卷解析</span>" }
+      ]},
+    { name:"立体几何位置关系", tag:"解答(约15分)", real:true, subs:["线面平行/垂直判定","面面平行/垂直","体积与表面积","截面问题"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q17", real:true, stem:"四棱锥 \\(P-ABCD\\) 中 \\(PA\\perp\\) 底面 \\(ABCD\\)，\\(PA=AC=2\\)，\\(BC=1\\)，\\(AB=\\sqrt3\\)。(1) 若 \\(AD\\perp PB\\)，证 \\(AD\\parallel\\) 平面 \\(PBC\\)；(2) 若 \\(AD\\perp DC\\) 且二面角 \\(A-CP-D\\) 正弦值为 \\(\\tfrac{\\sqrt{42}}7\\)，求 \\(AD\\)。",
+          sol:"(1) 由 \\(PA\\perp\\) 底面得 \\(PA\\perp AD\\)，结合 \\(AD\\perp PB\\) 推出 \\(AD\\perp\\) 平面 \\(PAB\\)，再证共面得平行。<br>(2) 建系求平面 \\(ACP\\)、\\(CPD\\) 法向量，由二面角正弦值反求 \\(AD\\)。 <span class='ans'>见试卷解析</span>" }
+      ]},
+    { name:"空间向量与建系", tag:"解答(工具)", real:true, subs:["建立空间直角坐标系","法向量","线面角","二面角","点到平面距离"],
+      qs:[
+        { src:"2025 新高考Ⅰ卷 · Q17", real:true, stem:"四棱锥 \\(P-ABCD\\) 中 \\(PA\\perp\\) 底面，\\(BC\\parallel AD\\)，\\(AB\\perp AD\\)。(1) 证平面 \\(PAB\\perp\\) 平面 \\(PAD\\)；(2) 若 \\(P,A,B,C,D\\) 共球，证球心 \\(O\\) 在底面，并求 \\(AC\\) 与 \\(PO\\) 夹角余弦。",
+          sol:"(1) 由 \\(PA\\perp\\) 底面与 \\(AB\\perp AD\\) 推出线面垂直，进而面面垂直。<br>(2) 建系求各点坐标，利用共球条件确定球心在底面，再用向量夹角公式求余弦。 <span class='ans'>见试卷解析</span>" }
+      ]},
+    { name:"直线与圆", tag:"选择/填空/解答铺垫", real:false, subs:["直线方程","距离公式","弦长","圆的性质","切线"],
+      qs:[
+        { src:"新高考Ⅰ卷 · 典型", real:false, stem:"圆 \\(x^2+y^2=4\\) 上一点到过原点的弦的距离相关问题",
+          sol:"利用垂径定理与勾股定理（\\(d^2+r_1^2=R^2\\)）求解。 <span class='ans'>典型步骤见解析</span>" }
+      ]},
+    { name:"圆锥曲线", tag:"解答(压轴,17分)", real:true, subs:["椭圆/双曲线/抛物线定义","离心率","焦点弦","定点定值","最值","轨迹"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q16", real:true, stem:"已知椭圆 \\(C\\)，(1) 求离心率；(2) 过 \\(P\\) 的直线 \\(l\\) 交 \\(C\\) 于另一点 \\(B\\)，且 \\(\\triangle ABP\\) 面积为 9，求 \\(l\\) 的方程。",
+          sol:"(1) 由 \\(a,b,c\\) 关系求 \\(e=\\tfrac ca\\)；(2) 设直线联立椭圆，用面积公式 \\(S=\\tfrac12|AB|\\cdot d\\) 或弦长×高建立方程求斜率。 <span class='ans'>见试卷解析</span>" },
+        { src:"2025 新高考Ⅰ卷 · Q18", real:true, stem:"椭圆 \\(C:\\tfrac{x^2}{a^2}+\\tfrac{y^2}{b^2}=1\\)，离心率已知，下端点 \\(A\\)、右端点 \\(B\\)。(1) 求方程；(2) 动点 \\(P\\)，点 \\(R\\) 在射线 \\(AP\\) 上满足 \\(|AR|\\cdot|AP|=3\\)，用 \\(P\\) 坐标表示 \\(R\\)；\\(Q\\) 在 \\(C\\) 上且 \\(OR\\) 斜率是 \\(OP\\) 的 3 倍，求 \\(|PQ|\\) 最大值。",
+          sol:"(1) 列 \\(a,b,c\\) 方程解得标准方程；(2)(i) 向量相等求 \\(R\\) 坐标；(ii) 由斜率关系得 \\(R\\) 轨迹为圆，转化为点到圆的最值，换元法求二次函数最值。 <span class='ans'>见试卷解析</span>" }
+      ]},
+  ]},
+
+  { id:"prob", name:"四、概率与统计", color:"#d97706", kcs:[
+    { name:"计数原理", tag:"选择/填空", real:false, subs:["排列与组合","分类与分步","二项式定理","通项公式"],
+      qs:[
+        { src:"新高考Ⅰ卷 · 典型", real:false, stem:"\\((x+\\tfrac1x)^6\\) 展开式中常数项为",
+          sol:"通项 \\(T_{k+1}=C_6^k x^{6-2k}\\)，令 \\(6-2k=0\\Rightarrow k=3\\)，常数项 \\(C_6^3=20\\)。 <span class='ans'>答案：20</span>" }
+      ]},
+    { name:"概率", tag:"选择/填空/解答", real:true, subs:["古典概型","条件概率","独立事件","全概率公式","贝叶斯"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q14", real:true, stem:"甲乙等人进行比赛，得分情况组合共 24 种，其中甲得分不小于 2 的有 12 种，求对应概率。",
+          sol:"古典概型，\\(P=\\tfrac{12}{24}=\\tfrac12\\)。 <span class='ans'>答案：\\(\\tfrac12\\)</span>" },
+        { src:"2025 新高考Ⅰ卷 · Q14", real:true, stem:"箱中有 5 个标号为 1~5 的球，有放回取 3 次，记至少被取出一次的球的个数为 \\(\\xi\\)，求 \\(E(\\xi)\\)。",
+          sol:"\\(\\xi\\) 取值 1,2,3，用对立事件与期望线性性质：\\(E(\\xi)=5\\left(1-(\\tfrac45)^3\\right)=\\tfrac{61}{25}\\)。 <span class='ans'>答案：\\(\\tfrac{61}{25}\\)</span>" }
+      ]},
+    { name:"随机变量", tag:"解答(约15分)", real:false, subs:["分布列","数学期望与方差","二项分布","正态分布","超几何分布"],
+      qs:[
+        { src:"新高考Ⅰ卷 · 典型", real:false, stem:"某试验成功概率 \\(p\\)，进行 \\(n\\) 次独立重复，求成功次数 \\(X\\) 的期望与方差。",
+          sol:"\\(X\\sim B(n,p)\\)，\\(E(X)=np\\)，\\(D(X)=np(1-p)\\)。 <span class='ans'>答案：\\(np,\\ np(1-p)\\)</span>" }
+      ]},
+    { name:"统计", tag:"解答(约13分)", real:true, subs:["抽样方法","用样本估计总体","线性回归","独立性检验（\\(\\chi^2\\)）"],
+      qs:[
+        { src:"2025 新高考Ⅰ卷 · Q15", real:true, stem:"调查 1000 人得列联表：超声波正常/不正常 × 患病/未患病（不正常者 200 人，其中患病 180 人）。(1) 估计不正常者患病概率 \\(p\\)；(2) 用 \\(\\alpha=0.001\\) 独立性检验判断是否有关（\\(k_{0.001}=10.828\\)）。",
+          sol:"(1) \\(p=\\tfrac{180}{200}=\\tfrac{9}{10}\\)。<br>(2) \\(\\chi^2=\\tfrac{1000(20\\times780-180\\times20)^2}{200\\times800\\times200\\times800}=11.25>10.828\\)，拒绝原假设，认为有关，犯错概率不超 0.001。 <span class='ans'>答案：(1) 9/10；(2) 有关</span>" }
+      ]},
+  ]},
+
+  { id:"model", name:"五、数学建模与探究", color:"#db2777", kcs:[
+    { name:"数学建模", tag:"选择/填空(新情境)", real:true, subs:["实际问题的数学抽象","向量/函数建模","数据分析与解释","知识迁移"],
+      qs:[
+        { src:"2025 新高考Ⅰ卷 · Q6", real:true, stem:"以帆船比赛为背景，用向量描述航行方向与受力，考查向量运算的实际应用。",
+          sol:"将航向、风速抽象为向量，用合成与投影分析，是“反套路、重应用”导向的体现。 <span class='ans'>新情境题，见试卷解析</span>" }
+      ]},
+    { name:"数学探究", tag:"压轴(开放/新定义)", real:true, subs:["新概念理解","归纳与猜想","分类讨论","创新证明"],
+      qs:[
+        { src:"2024 新高考Ⅰ卷 · Q19", real:true, stem:"（可分数列）给出新定义，探究等差数列删项后成等差的分组规律并证明。",
+          sol:"通过构造“连续4项一组”的分组法与计数，完成存在性与分类证明，是数学探究压轴典型。 <span class='ans'>见试卷解析</span>" },
+        { src:"2025 新高考Ⅰ卷 · Q19", real:true, stem:"（三角探究）结合三角函数周期性与导数，证明存在性与参数范围。",
+          sol:"利用函数有界性与导数分析，完成存在性证明与最值控制。 <span class='ans'>见试卷解析</span>" }
+      ]},
+  ]},
+  { id:"err", name:"六、易错警示与混淆辨析", color:"#dc2626", kcs:[
+    { name:"函数与导数", pits:[
+      { title:"充分条件 vs 必要条件", wrong:"“p 是 q 的充分条件”常记反方向；充要判断只看单向就下结论。", trick:"箭头法：p⇒q 时，p 是 q 的充分条件、q 是 p 的必要条件。记口诀——「充分=有它就行，必要=没它不行」；箭头尾(前提)是充分，箭头头(结论)是必要。" },
+      { title:"奇偶性先查定义域对称", wrong:"直接代 -x 算 f(-x)，忘了定义域必须关于原点对称，导致误判奇偶。", trick:"第一步永远先看定义域是否关于原点对称；不对称→直接判非奇非偶，根本不用算。" },
+      { title:"极值 vs 最值", wrong:"把极值点当成最值点；闭区间求最值漏比端点。", trick:"极值是「局部」——导数变号的驻点；最值是「全局」——所有极值+区间端点一起比。口诀：「极值看变号，最值比端点」。" },
+      { title:"复合/对数求导忘链式法则", wrong:"(ln f(x))′ 写成 1/f(x) 漏乘 f′(x)；且忽略 f(x)>0 的定义域。", trick:"链式法则「由外到内逐层乘导数」；凡出现对数先写定义域 f(x)>0。" },
+      { title:"数列求和：错位相减 vs 裂项", wrong:"{等差×等比}型误用裂项；错位相减后等比项数/首项算错。", trick:"见「等差×等比」→错位相减(乘公比错位再减)；见 1/[n(n+1)] 型→裂项(=1/n−1/(n+1))。相减后两边同乘公比再减，项数对齐。" },
+    ]},
+    { name:"几何与代数", pits:[
+      { title:"椭圆 vs 双曲线 a,b,c 与离心率", wrong:"双曲线也套 c²=a²−b²；e 的范围记反；a,b 位置互换。", trick:"椭圆「a最大」：c²=a²−b²，e=c/a∈(0,1)；双曲线「c最大」：c²=a²+b²，e∈(1,∞)。口诀：「椭减双加，a大e小」。" },
+      { title:"线面垂直判定漏「相交」", wrong:"一条直线垂直于平面内两条直线就判垂直，忽略这两条必须相交。", trick:"判定定理铁律——垂直平面内「两条相交直线」。少「相交」二字结论不成立。" },
+      { title:"二面角与法向量夹角互补", wrong:"直接取法向量夹角余弦当二面角余弦，不分锐钝。", trick:"法向量夹角可能等于或互补于二面角。先判断图形二面角是锐是钝；或统一两法向量「都指向内/都指向外」则夹角=二面角，一内一外则互补。" },
+      { title:"向量投影方向", wrong:"a 在 b 上的投影写成 |a|cosθ 却带错正负；或写成 |b|cosθ。", trick:"a 在 b 方向投影=|a|cosθ(带符号)；数量积 a·b=|a||b|cosθ=|b|×(a在b上投影)。" },
+    ]},
+    { name:"概率与统计", pits:[
+      { title:"有放回 vs 无放回 → 分布模型", wrong:"无放回也用二项分布；二项与超几何乱用。", trick:"有放回(独立、概率不变)→二项分布；无放回(不放回抽样)→超几何分布。口诀：「放回二项，不放超几何」。" },
+      { title:"期望线性 vs 方差", wrong:"D(aX+b) 也乘 a(应为 a²)；以为常数 b 影响方差。", trick:"E(aX+b)=aE(X)+b；D(aX+b)=a²D(X)(常数清零、系数平方)。口诀：「期望线性方差方，常数一去不复返」。" },
+      { title:"独立性检验 χ² 越大越有关", wrong:"χ² 偏小反而判有关；记反临界值比较方向。", trick:"χ² 越大→越拒绝「独立」原假设→越有关。判定：χ²>临界值(k) 才在相应水平下认为有关。" },
+      { title:"条件概率分母", wrong:"P(A|B) 分母误用 P(A) 或 P(B) 不分。", trick:"「在 B 发生前提下」→分母永远是 P(B)：P(A|B)=P(AB)/P(B)。" },
+    ]},
+    { name:"预备知识", pits:[
+      { title:"集合空集讨论", wrong:"A∩B=∅ 或 A⊆B 等含参问题，忘记 A=∅ 的可能，导致漏解。", trick:"见到「子集」「交集为空」「参数范围」先问一句：空集呢？空集是任何集合子集，常是隐藏解。" },
+      { title:"基本不等式三前提", wrong:"x+1/x 在 x<0 直接用得 2；或等号取不到仍写最值。", trick:"一正二定三相等。负数先提负号变正；凑不出定值换思路；最后验等号能否成立。口诀：「不正不看，不定不凑，不等不写」。" },
+      { title:"复数模与相等", wrong:"|z₁±z₂|=|z₁|±|z₂| 误当等式；复数相等要求实部虚部分别等。", trick:"模满足三角不等式 |z₁+z₂|≤|z₁|+|z₂|，一般不等；复数相等→实部=实部、虚部=虚部(先化 a+bi 标准形式)。" },
+    ]},
+    { name:"数学建模与探究", pits:[
+      { title:"新定义题急于代入", wrong:"没吃透定义就套老方法，方向跑偏。", trick:"三步法——① 用自己的话重述定义；② 取小特例验证；③ 再推广到一般。先懂定义，再谈技巧。" },
+      { title:"实际应用建模忽略量纲/范围", wrong:"解出数学解后不回代检验实际意义(如人数非整数、时间为负)。", trick:"建模最后一步必做「实际检验」：解是否符合定义域、是否整数、是否为正。数学解≠实际可行解。" },
+    ]},
+  ]},
+  { id:"demo", name:"七、参数动态演示", color:"#7c3aed", kcs:[
+    { name:"三角函数 y=A·sin(ωx+φ)+k", tag:"动态演示", demo:"trig" },
+    { name:"二次函数 y=ax²+bx+c 与顶点", tag:"动态演示", demo:"quad" },
+    { name:"圆锥曲线离心率(椭圆/双曲线)", tag:"动态演示", demo:"conic" },
+    { name:"平面向量 和/差/投影", tag:"动态演示", demo:"vector" },
+    { name:"导数与切线", tag:"动态演示", demo:"deriv" },
+    { name:"数列 等差/等比", tag:"动态演示", demo:"seq" },
+    { name:"解三角形(余弦定理)", tag:"动态演示", demo:"triangle" },
+    { name:"二项分布 B(n,p)", tag:"动态演示", demo:"binom" },
+  ]},
+];
+
+// ============ 渲染 ============
+const app = document.getElementById("app");
+function render(filter){
+  app.innerHTML = "";
+  THEMES.forEach(t=>{
+    const themeEl = document.createElement("div");
+    themeEl.className = "theme";
+    themeEl.innerHTML = `<div class="theme-head" style="background:${t.color}">${t.name}<span class="cnt">· ${t.kcs.length} 个考点</span></div>`;
+    t.kcs.forEach(kc=>{
+      const kcEl = document.createElement("div");
+      kcEl.className = "kc";
+      let qsHtml = (kc.qs||[]).map(q=>{
+        const rtag = q.real ? `<span class="meta tag-real">真题</span>` : `<span class="meta tag-rep">典型</span>`;
+        return `<div class="q">
+          ${rtag}<span class="meta" style="background:#475569;margin-left:6px">${q.src}</span>
+          <div class="stem">${q.stem}</div>
+          <div class="btn" onclick="this.nextElementSibling.classList.toggle('show')">▸ 显示解析</div>
+          <div class="sol">${q.sol}</div>
+        </div>`;
+      }).join("");
+      let bodyHtml;
+      if(kc.demo){
+        bodyHtml = `<div class="sub-title">动态演示（拖动滑块观察参数实时变化；命中关键参数会弹出「📌 真题联动」与「⚠ 影响提示」）</div><div class="demo" data-demo="${kc.demo}"></div>`;
+      } else if(kc.pits){
+        bodyHtml = `<div class="sub-title">易错 / 混淆 辨析（共 ${kc.pits.length} 条）</div>` +
+          kc.pits.map(p=>`
+            <div class="pit">
+              <div class="ptitle"><span class="badge">易错</span>${p.title}</div>
+              <div class="row"><b>❌ 常见错误：</b>${p.wrong}</div>
+              <div class="trick"><span class="h">💡 明晰诀窍 / 妙法：</span>${p.trick}</div>
+            </div>`).join("");
+      } else {
+        bodyHtml = `
+          <div class="sub-title">细分知识</div>
+          <div class="subs">${kc.subs.map(s=>`<span>${s}</span>`).join("")}</div>
+          <div class="sub-title">真题演练</div>
+          ${qsHtml}`;
+      }
+      kcEl.innerHTML = `
+        <div class="kc-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="tg" style="background:${t.color}">${kc.demo?'演示':kc.pits?'辨析':'考点'}</span>
+          <span>${kc.name}</span>
+          <span class="ar">▶</span>
+        </div>
+        <div class="kc-body">${bodyHtml}</div>`;
+      // 过滤
+      const isReal = kc.qs && kc.qs.some(q=>q.real);
+      if(filter==="real" && !isReal){ kcEl.style.display="none"; }
+      if(filter==="err" && t.id!=="err"){ kcEl.style.display="none"; }
+      if((filter==="func"||filter==="geo"||filter==="prob") && t.id!==filter){ kcEl.style.display="none"; }
+      if(filter==="demo" && t.id!=="demo"){ kcEl.style.display="none"; }
+      themeEl.appendChild(kcEl);
+    });
+    app.appendChild(themeEl);
+  });
+  document.querySelectorAll('.demo').forEach(d=>initDemo(d.dataset.demo, d));
+  if(window.MathJax) MathJax.typesetPromise && MathJax.typesetPromise();
+}
+// ============ 参数动态演示 ============
+function svgEl(tag,attrs){ const e=document.createElementNS('http://www.w3.org/2000/svg',tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
+
+function demoTrig(box){
+  box.innerHTML=`<div class="ctrls">
+    <label class="ctrl">A <input type="range" id="tA" min="0.5" max="3" step="0.1" value="1.5"><b id="vA">1.5</b></label>
+    <label class="ctrl">ω <input type="range" id="tW" min="0.5" max="3" step="0.1" value="1"><b id="vW">1.0</b></label>
+    <label class="ctrl">φ <input type="range" id="tP" min="-3.14" max="3.14" step="0.05" value="0"><b id="vP">0.00</b></label>
+    <label class="ctrl">k <input type="range" id="tK" min="-2" max="2" step="0.1" value="0"><b id="vK">0.0</b></label></div>
+    <svg viewBox="0 0 480 300" id="tSvg"></svg><div class="out" id="tOut"></div>`;
+  const svg=box.querySelector('#tSvg'), W=480,H=300,cx=W/2,cy=H/2,sx=40,sy=40;
+  const tA=box.querySelector('#tA'),tW=box.querySelector('#tW'),tP=box.querySelector('#tP'),tK=box.querySelector('#tK');
+  const vA=box.querySelector('#vA'),vW=box.querySelector('#vW'),vP=box.querySelector('#vP'),vK=box.querySelector('#vK'),tOut=box.querySelector('#tOut');
+  function draw(){
+    const A=+tA.value,W_=+tW.value,P=+tP.value,K=+tK.value;
+    vA.textContent=A.toFixed(1);vW.textContent=W_.toFixed(1);vP.textContent=P.toFixed(2);vK.textContent=K.toFixed(1);
+    svg.innerHTML='';
+    svg.appendChild(svgEl('line',{x1:0,y1:cy,x2:W,y2:cy,stroke:'#cbd5e1'}));
+    svg.appendChild(svgEl('line',{x1:cx,y1:0,x2:cx,y2:H,stroke:'#cbd5e1'}));
+    let pts=''; for(let px=0;px<=W;px++){ const x=(px-cx)/sx; const y=K+A*Math.sin(W_*x+P); pts+=px+','+(cy-y*sy)+' '; }
+    svg.appendChild(svgEl('polyline',{points:pts,fill:'none',stroke:'#7c3aed','stroke-width':2}));
+    tOut.innerHTML=`振幅 A=${A.toFixed(1)}，周期 T=2π/ω=<b>${(2*Math.PI/W_).toFixed(2)}</b>，初相 φ=${P.toFixed(2)}，纵向平移 k=${K.toFixed(1)}` + lnk('trig',{A,W:W_,P,K});
+  }
+  [tA,tW,tP,tK].forEach(s=>s.addEventListener('input',draw)); draw();
+}
+
+function demoQuad(box){
+  box.innerHTML=`<div class="ctrls">
+    <label class="ctrl">a <input type="range" id="qA" min="-3" max="3" step="0.1" value="1"><b id="vA">1.0</b></label>
+    <label class="ctrl">b <input type="range" id="qB" min="-5" max="5" step="0.1" value="0"><b id="vB">0.0</b></label>
+    <label class="ctrl">c <input type="range" id="qC" min="-5" max="5" step="0.1" value="-2"><b id="vC">-2.0</b></label></div>
+    <svg viewBox="0 0 480 300" id="qSvg"></svg><div class="out" id="qOut"></div>`;
+  const svg=box.querySelector('#qSvg'), W=480,H=300,cx=W/2,cy=H/2,sx=40,sy=20;
+  const qA=box.querySelector('#qA'),qB=box.querySelector('#qB'),qC=box.querySelector('#qC');
+  const vA=box.querySelector('#vA'),vB=box.querySelector('#vB'),vC=box.querySelector('#vC'),qOut=box.querySelector('#qOut');
+  function draw(){
+    const a=+qA.value,b=+qB.value,c=+qC.value;
+    vA.textContent=a.toFixed(1);vB.textContent=b.toFixed(1);vC.textContent=c.toFixed(1);
+    svg.innerHTML='';
+    svg.appendChild(svgEl('line',{x1:0,y1:cy,x2:W,y2:cy,stroke:'#cbd5e1'}));
+    svg.appendChild(svgEl('line',{x1:cx,y1:0,x2:cx,y2:H,stroke:'#cbd5e1'}));
+    let pts=''; for(let px=0;px<=W;px++){ const x=(px-cx)/sx; const y=a*x*x+b*x+c; pts+=px+','+(cy-y*sy)+' '; }
+    svg.appendChild(svgEl('polyline',{points:pts,fill:'none',stroke:'#16a34a','stroke-width':2}));
+    if(a!==0){ const vx=-b/(2*a), vy=c-b*b/(4*a);
+      svg.appendChild(svgEl('line',{x1:cx+vx*sx,y1:0,x2:cx+vx*sx,y2:H,stroke:'#f59e0b','stroke-dasharray':'4 3'}));
+      svg.appendChild(svgEl('circle',{cx:cx+vx*sx,cy:cy-vy*sy,r:4,fill:'#dc2626'}));
+      qOut.innerHTML=`顶点 (<b>${vx.toFixed(2)}</b>, <b>${vy.toFixed(2)}</b>)，对称轴 x=${vx.toFixed(2)}，开口${a>0?'向上':'向下'}`;
+    } else qOut.innerHTML='a=0，退化为一次函数';
+    qOut.innerHTML += lnk('quad',{a,b,c});
+  }
+  [qA,qB,qC].forEach(s=>s.addEventListener('input',draw)); draw();
+}
+
+function demoConic(box){
+  box.innerHTML=`<div class="ctrls">
+    <span class="ctrl"><label><input type="radio" name="ct" value="ell" checked> 椭圆</label> &nbsp;<label><input type="radio" name="ct" value="hyp"> 双曲线</label></span>
+    <label class="ctrl">a <input type="range" id="cA" min="1" max="5" step="0.1" value="3"><b id="vA">3.0</b></label>
+    <label class="ctrl">b <input type="range" id="cB" min="1" max="5" step="0.1" value="2"><b id="vB">2.0</b></label></div>
+    <svg viewBox="0 0 480 300" id="cSvg"></svg><div class="out" id="cOut"></div>`;
+  const svg=box.querySelector('#cSvg'),W=480,H=300,cx=W/2,cy=H/2,s=28;
+  const cA=box.querySelector('#cA'),cB=box.querySelector('#cB'),vA=box.querySelector('#vA'),vB=box.querySelector('#vB'),cOut=box.querySelector('#cOut');
+  function draw(){
+    const a=+cA.value,b=+cB.value; vA.textContent=a.toFixed(1);vB.textContent=b.toFixed(1);
+    const type=box.querySelector('input[name=ct]:checked').value;
+    svg.innerHTML='';
+    svg.appendChild(svgEl('line',{x1:0,y1:cy,x2:W,y2:cy,stroke:'#cbd5e1'}));
+    svg.appendChild(svgEl('line',{x1:cx,y1:0,x2:cx,y2:H,stroke:'#cbd5e1'}));
+    if(type==='ell'){
+      let pts=''; for(let t=0;t<=360;t+=2){ pts+=(cx+a*Math.cos(t*Math.PI/180)*s)+','+(cy-b*Math.sin(t*Math.PI/180)*s)+' '; }
+      const c=Math.sqrt(Math.max(a*a-b*b,1e-4)), e=c/a;
+      svg.appendChild(svgEl('polyline',{points:pts,fill:'none',stroke:'#16a34a','stroke-width':2}));
+      svg.appendChild(svgEl('circle',{cx:cx+c*s,cy,r:3,fill:'#dc2626'})); svg.appendChild(svgEl('circle',{cx:cx-c*s,cy,r:3,fill:'#dc2626'}));
+      cOut.innerHTML=`椭圆：c=√(${a*a}−${b*b})=<b>${c.toFixed(2)}</b>，离心率 e=c/a=<b>${e.toFixed(3)}</b> （e∈(0,1)）`;
+      cOut.innerHTML += lnk('conic',{a,b,type});
+    } else {
+      let p1='',p2=''; for(let t=-2.2;t<=2.2;t+=0.05){ const x=a*Math.cosh(t), y=b*Math.sinh(t); p1+=(cx+x*s)+','+(cy-y*s)+' '; p2+=(cx-x*s)+','+(cy-y*s)+' '; }
+      const c=Math.sqrt(a*a+b*b), e=c/a;
+      svg.appendChild(svgEl('polyline',{points:p1,fill:'none',stroke:'#16a34a','stroke-width':2}));
+      svg.appendChild(svgEl('polyline',{points:p2,fill:'none',stroke:'#16a34a','stroke-width':2}));
+      svg.appendChild(svgEl('circle',{cx:cx+c*s,cy,r:3,fill:'#dc2626'})); svg.appendChild(svgEl('circle',{cx:cx-c*s,cy,r:3,fill:'#dc2626'}));
+      cOut.innerHTML=`双曲线：c=√(${a*a}+${b*b})=<b>${c.toFixed(2)}</b>，离心率 e=c/a=<b>${e.toFixed(3)}</b> （e>1）`;
+      cOut.innerHTML += lnk('conic',{a,b,type});
+    }
+  }
+  [cA,cB].forEach(s=>s.addEventListener('input',draw));
+  box.querySelectorAll('input[name=ct]').forEach(r=>r.addEventListener('change',draw)); draw();
+}
+
+function demoVector(box){
+  box.innerHTML=`<div class="ctrls">
+    <label class="ctrl">|u| <input type="range" id="vU" min="1" max="5" step="0.1" value="3"><b id="vu">3.0</b></label>
+    <label class="ctrl">∠u <input type="range" id="vAu" min="0" max="360" step="1" value="20"><b id="vau">20°</b></label>
+    <label class="ctrl">|v| <input type="range" id="vV" min="1" max="5" step="0.1" value="4"><b id="vv">4.0</b></label>
+    <label class="ctrl">∠v <input type="range" id="vAv" min="0" max="360" step="1" value="110"><b id="vav">110°</b></label></div>
+    <svg viewBox="0 0 480 300" id="vSvg"></svg><div class="out" id="vOut"></div>`;
+  const svg=box.querySelector('#vSvg'),W=480,H=300,cx=W/2,cy=H/2,s=40;
+  const vU=box.querySelector('#vU'),vAu=box.querySelector('#vAu'),vV=box.querySelector('#vV'),vAv=box.querySelector('#vAv'),vOut=box.querySelector('#vOut');
+  const vec=(m,a)=>({x:m*Math.cos(a*Math.PI/180), y:m*Math.sin(a*Math.PI/180)});
+  function arrow(x1,y1,x2,y2,color){ const dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy); if(len<1)return; const ux=dx/len,uy=dy/len,hs=8;
+    svg.appendChild(svgEl('line',{x1,y1,x2,y2,stroke:color,'stroke-width':2}));
+    svg.appendChild(svgEl('polygon',{points:`${x2},${y2} ${x2-ux*hs-uy*hs*0.6},${y2-uy*hs+ux*hs*0.6} ${x2-ux*hs+uy*hs*0.6},${y2-uy*hs-ux*hs*0.6}`,fill:color})); }
+  function draw(){
+    const u=vec(+vU.value,+vAu.value), v=vec(+vV.value,+vAv.value);
+    box.querySelector('#vu').textContent=(+vU.value).toFixed(1); box.querySelector('#vau').textContent=vAu.value+'°';
+    box.querySelector('#vv').textContent=(+vV.value).toFixed(1); box.querySelector('#vav').textContent=vAv.value+'°';
+    svg.innerHTML='';
+    svg.appendChild(svgEl('line',{x1:0,y1:cy,x2:W,y2:cy,stroke:'#cbd5e1'}));
+    svg.appendChild(svgEl('line',{x1:cx,y1:0,x2:cx,y2:H,stroke:'#cbd5e1'}));
+    const U={x:cx+u.x*s,y:cy-u.y*s}, V={x:cx+v.x*s,y:cy-v.y*s}, S={x:cx+(u.x+v.x)*s,y:cy-(u.y+v.y)*s};
+    svg.appendChild(svgEl('polyline',{points:`${cx},${cy} ${U.x},${U.y} ${S.x},${S.y} ${V.x},${V.y} ${cx},${cy}`,fill:'none',stroke:'#cbd5e1','stroke-dasharray':'4 3'}));
+    arrow(cx,cy,U.x,U.y,'#2563eb'); arrow(cx,cy,V.x,V.y,'#16a34a'); arrow(cx,cy,S.x,S.y,'#7c3aed');
+    const dot=u.x*v.x+u.y*v.y, vl=v.x*v.x+v.y*v.y, proj={x:dot/vl*v.x,y:dot/vl*v.y}, Pp={x:cx+proj.x*s,y:cy-proj.y*s};
+    svg.appendChild(svgEl('line',{x1:U.x,y1:U.y,x2:Pp.x,y2:Pp.y,stroke:'#dc2626','stroke-width':1.5,'stroke-dasharray':'3 2'}));
+    arrow(cx,cy,Pp.x,Pp.y,'#dc2626');
+    let ang=Math.abs(Math.atan2(u.y,u.x)-Math.atan2(v.y,v.x))*180/Math.PI; if(ang>180)ang=360-ang;
+    vOut.innerHTML=`u+v 长度=<b>${Math.hypot(u.x+v.x,u.y+v.y).toFixed(2)}</b>；u 在 v 上投影长=<b>${Math.hypot(proj.x,proj.y).toFixed(2)}</b>；夹角=<b>${ang.toFixed(1)}°</b>；u·v=<b>${(u.x*v.x+u.y*v.y).toFixed(2)}</b>` + lnk('vector',{ang, proj:Math.hypot(proj.x,proj.y)});
+  }
+  [vU,vAu,vV,vAv].forEach(x=>x.addEventListener('input',draw)); draw();
+}
+
+function demoDeriv(box){
+  box.innerHTML=`<div class="ctrls">
+    <label class="ctrl">切点 x₀ <input type="range" id="dX" min="-2.5" max="2.5" step="0.05" value="1"><b id="vx">1.00</b></label></div>
+    <svg viewBox="0 0 480 300" id="dSvg"></svg><div class="out" id="dOut"></div>`;
+  const svg=box.querySelector('#dSvg'),W=480,H=300,cx=W/2,cy=H/2,sx=60,sy=30;
+  const dX=box.querySelector('#dX'),dOut=box.querySelector('#dOut');
+  const f=x=>x*x*x-3*x, fp=x=>3*x*x-3;
+  function draw(){
+    const x0=+dX.value; box.querySelector('#vx').textContent=x0.toFixed(2);
+    svg.innerHTML='';
+    svg.appendChild(svgEl('line',{x1:0,y1:cy,x2:W,y2:cy,stroke:'#cbd5e1'}));
+    svg.appendChild(svgEl('line',{x1:cx,y1:0,x2:cx,y2:H,stroke:'#cbd5e1'}));
+    let pts=''; for(let px=0;px<=W;px++){ const x=(px-cx)/sx, y=f(x), py=cy-y*sy; if(py>-60&&py<H+60) pts+=px+','+py+' '; }
+    svg.appendChild(svgEl('polyline',{points:pts,fill:'none',stroke:'#2563eb','stroke-width':2}));
+    const y0=f(x0), m=fp(x0);
+    const p1x=cx+(x0-1.3)*sx, p1y=cy-(y0+m*(-1.3))*sy, p2x=cx+(x0+1.3)*sx, p2y=cy-(y0+m*1.3)*sy;
+    svg.appendChild(svgEl('line',{x1:p1x,y1:p1y,x2:p2x,y2:p2y,stroke:'#dc2626','stroke-width':2}));
+    svg.appendChild(svgEl('circle',{cx:cx+x0*sx,cy:cy-y0*sy,r:4,fill:'#dc2626'}));
+    dOut.innerHTML=`f(x)=x³−3x，f'(x)=3x²−3；x₀=${x0.toFixed(2)} 处斜率=<b>${m.toFixed(2)}</b>，切线 y=${m.toFixed(2)}(x−${x0.toFixed(2)})+${y0.toFixed(2)}` + lnk('deriv',{x0, m});
+  }
+  dX.addEventListener('input',draw); draw();
+}
+
+function demoSeq(box){
+  box.innerHTML=`<div class="ctrls">
+    <span class="ctrl"><label><input type="radio" name="st" value="ar" checked> 等差</label> &nbsp;<label><input type="radio" name="st" value="geo"> 等比</label></span>
+    <label class="ctrl">a₁ <input type="range" id="sA" min="-5" max="5" step="0.5" value="1"><b id="va">1.0</b></label>
+    <label class="ctrl">d / q <input type="range" id="sD" min="-3" max="3" step="0.1" value="1"><b id="vd">1.0</b></label></div>
+    <svg viewBox="0 0 480 200" id="sSvg"></svg><div class="out" id="sOut"></div>`;
+  const svg=box.querySelector('#sSvg'),W=480,H=200;
+  const sA=box.querySelector('#sA'),sD=box.querySelector('#sD'),va=box.querySelector('#va'),vd=box.querySelector('#vd'),sOut=box.querySelector('#sOut');
+  function draw(){
+    const a1=+sA.value,d=+sD.value; va.textContent=a1.toFixed(1); vd.textContent=d.toFixed(1);
+    const type=box.querySelector('input[name=st]:checked').value, n=8, arr=[];
+    for(let i=0;i<n;i++) arr.push(type==='ar'? a1+i*d : a1*Math.pow(d,i));
+    const max=Math.max(...arr,1), min=Math.min(...arr,-1), range=max-min||1, bw=W/n;
+    svg.innerHTML='';
+    arr.forEach((val,i)=>{ const h=Math.abs(val)/range*(H-30), x=i*bw+4, y=val>=0? H-15-h : H-15;
+      svg.appendChild(svgEl('rect',{x,y,width:bw-8,height:h,fill:val>=0?'#2563eb':'#dc2626',opacity:0.85}));
+      svg.appendChild(svgEl('text',{x:x+(bw-8)/2,y:y-(val>=0?4:-4),fill:'#334155','font-size':10,'text-anchor':'middle'})).textContent=val.toFixed(1); });
+    svg.appendChild(svgEl('line',{x1:0,y1:H-15,x2:W,y2:H-15,stroke:'#94a3b8'}));
+    sOut.innerHTML= type==='ar'? `等差数列 aₙ = <b>${a1}+${d}(n−1)</b>，前8项如上` : `等比数列 aₙ = <b>${a1}·${d}^(n−1)</b>，前8项如上`;
+    sOut.innerHTML += lnk('seq',{type, d});
+  }
+  [sA,sD].forEach(s=>s.addEventListener('input',draw));
+  box.querySelectorAll('input[name=st]').forEach(r=>r.addEventListener('change',draw)); draw();
+}
+
+function demoTri(box){
+  box.innerHTML=`<div class="ctrls">
+    <label class="ctrl">b <input type="range" id="tb" min="2" max="8" step="0.1" value="5"><b id="vb">5.0</b></label>
+    <label class="ctrl">c <input type="range" id="tc" min="2" max="8" step="0.1" value="6"><b id="vc">6.0</b></label>
+    <label class="ctrl">∠A <input type="range" id="tA" min="10" max="160" step="1" value="60"><b id="va">60°</b></label></div>
+    <svg viewBox="0 0 480 300" id="trSvg"></svg><div class="out" id="trOut"></div>`;
+  const svg=box.querySelector('#trSvg'), tb=box.querySelector('#tb'),tc=box.querySelector('#tc'),tA=box.querySelector('#tA'),trOut=box.querySelector('#trOut');
+  function draw(){
+    const b=+tb.value,c=+tc.value,A=+tA.value*Math.PI/180;
+    box.querySelector('#vb').textContent=b.toFixed(1); box.querySelector('#vc').textContent=c.toFixed(1); box.querySelector('#va').textContent=tA.value+'°';
+    const a=Math.sqrt(b*b+c*c-2*b*c*Math.cos(A)), area=0.5*b*c*Math.sin(A), s=22, Ax=90,Ay=250, Bx=Ax+b*s, By=Ay, Cx=Ax+c*s*Math.cos(A), Cy=Ay-c*s*Math.sin(A);
+    svg.innerHTML='';
+    svg.appendChild(svgEl('polygon',{points:`${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}`,fill:'#eff6ff',stroke:'#2563eb','stroke-width':2}));
+    svg.appendChild(svgEl('text',{x:Ax-8,y:Ay+4,fill:'#64748b','font-size':12})).textContent='A';
+    svg.appendChild(svgEl('text',{x:Bx+6,y:By+4,fill:'#64748b','font-size':12})).textContent='B';
+    svg.appendChild(svgEl('text',{x:Cx+6,y:Cy+4,fill:'#64748b','font-size':12})).textContent='C';
+    trOut.innerHTML=`余弦定理 a²=b²+c²−2bc·cosA ⇒ a=<b>${a.toFixed(2)}</b>；面积 S=½bc·sinA=<b>${area.toFixed(2)}</b>` + lnk('triangle',{A:+tA.value, a, area});
+  }
+  [tb,tc,tA].forEach(s=>s.addEventListener('input',draw)); draw();
+}
+
+function demoBinom(box){
+  box.innerHTML=`<div class="ctrls">
+    <label class="ctrl">n <input type="range" id="bn" min="1" max="20" step="1" value="10"><b id="vn">10</b></label>
+    <label class="ctrl">p <input type="range" id="bp" min="0.05" max="0.95" step="0.05" value="0.5"><b id="vp">0.50</b></label></div>
+    <svg viewBox="0 0 480 240" id="bSvg"></svg><div class="out" id="bOut"></div>`;
+  const svg=box.querySelector('#bSvg'),W=480,H=240, bn=box.querySelector('#bn'),bp=box.querySelector('#bp'),vn=box.querySelector('#vn'),vp=box.querySelector('#vp'),bOut=box.querySelector('#bOut');
+  const C=(n,k)=>{ let r=1; for(let i=0;i<k;i++) r=r*(n-i)/(i+1); return r; };
+  function draw(){
+    const n=+bn.value,p=+bp.value; vn.textContent=n; vp.textContent=p.toFixed(2);
+    const ps=[]; let maxp=0; for(let k=0;k<=n;k++){ const pr=C(n,k)*Math.pow(p,k)*Math.pow(1-p,n-k); ps.push(pr); if(pr>maxp)maxp=pr; }
+    svg.innerHTML=''; const bw=W/(n+1);
+    ps.forEach((pr,k)=>{ const h=pr/maxp*(H-30); svg.appendChild(svgEl('rect',{x:k*bw+2,y:H-15-h,width:bw-4,height:h,fill:'#d97706',opacity:0.85})); });
+    svg.appendChild(svgEl('line',{x1:0,y1:H-15,x2:W,y2:H-15,stroke:'#94a3b8'}));
+    bOut.innerHTML=`X~B(n=<b>${n}</b>, p=<b>${p.toFixed(2)}</b>)，期望 np=<b>${(n*p).toFixed(2)}</b>，方差 np(1−p)=<b>${(n*p*(1-p)).toFixed(2)}</b>` + lnk('binom',{n, p});
+  }
+  [bn,bp].forEach(s=>s.addEventListener('input',draw)); draw();
+}
+
+// ============ 真题联动 / 参数影响提示 ============
+function lnk(type, v){
+  const out = [];
+  const near = (x, t, tol)=> Math.abs(x - t) <= tol;
+  if(type==='trig'){
+    if(near(v.W, 2, 0.11)) out.push(['real','周期 T=π（ω=2）是高发情形，对应新高考Ⅰ卷「三角函数图象与性质」选择压轴（如第11题）：先定 ω 再判对称中心 / 对称轴。']);
+    if(near(v.A,1,0.11) && near(v.W,1,0.11) && near(v.P,0,0.06) && near(v.K,0,0.11)) out.push(['real','此为标准正弦曲线，正是 2025 新高考Ⅰ卷第19题（三角 + 导数综合探究）的起点：先研究 sin x 性态，再叠加导数。']);
+    if(v.A < 0) out.push(['impact','A<0 时图象关于 x 轴翻转，波峰变波谷（振幅取 |A|）；仅改变形状不改变周期。']);
+    if(!near(v.K,0,0.06)) out.push(['impact','k≠0 时整体上下平移，影响最值但周期与零点间距不变；平移后零点随之移动。']);
+  }
+  else if(type==='quad'){
+    if(Math.abs(v.a) < 0.06) out.push(['impact','a=0 时退化为一次函数！这是「二次函数」选择题的高频陷阱——命题人常不声明 a≠0，需自行分类讨论。']);
+    else if(v.a > 0) out.push(['impact','a>0 开口向上，顶点是最小值点；求区间最值务必比较顶点与两端点。']);
+    else out.push(['impact','a<0 开口向下，顶点是最大值点；同样需比较顶点与区间端点取最值。']);
+    const disc = v.b*v.b - 4*v.a*v.c;
+    if(Math.abs(v.a) > 0.06 && near(disc, 0, 0.5)) out.push(['real','判别式 Δ≈0 时抛物线与 x 轴相切（唯一零点），对应真题「函数有唯一零点 / 相切」设问。']);
+    if(Math.abs(v.a) > 0.06) out.push(['real','二次函数图象是 2024 新高考Ⅰ卷第11题（函数性质多选）的图象基底：研究其开口 / 对称轴 / 零点即研究函数整体性质。']);
+  }
+  else if(type==='conic'){
+    const c = v.type==='ell' ? Math.sqrt(Math.max(v.a*v.a - v.b*v.b,1e-4)) : Math.sqrt(v.a*v.a + v.b*v.b);
+    const e = c/v.a;
+    if(v.type==='ell'){
+      if(near(v.a, v.b, 0.11)) out.push(['impact','a≈b 时 e≈0，椭圆接近平圆（圆是椭圆 e=0 的特例）。']);
+      else out.push(['impact','椭圆 e∈(0,1)：a 为长半轴、b 为短半轴，越扁 e 越大。']);
+      if(near(e, Math.SQRT1_2, 0.04)) out.push(['real','e=√2/2 是椭圆经典值（如 2025 新高考Ⅰ卷第18题解析几何压轴涉及的圆锥曲线），真题常要求由几何条件反求 a,b。']);
+    } else {
+      out.push(['impact','双曲线 e>1；a=b（等轴双曲）时 e=√2，两渐近线互相垂直。']);
+      if(near(e, Math.SQRT2, 0.04)) out.push(['real','e=√2 即等轴双曲线，是真题「渐近线互相垂直」的标志，常出现在解析几何压轴。']);
+    }
+  }
+  else if(type==='vector'){
+    if(near(v.ang, 90, 2)) out.push(['impact','夹角≈90° ⇒ u·v≈0，两向量垂直——真题「垂直」常转化为数量积为 0 来验证。']);
+    if(near(v.ang, 0, 2)) out.push(['impact','夹角≈0° ⇒ 同向共线；≈180° ⇒ 反向共线（真题「共线」判定常用）。']);
+    if(near(v.proj, 0, 0.05)) out.push(['impact','投影长≈0 ⇒ 两向量垂直。']);
+    out.push(['real','平面向量数量积与投影是 2025 新高考Ⅰ卷第6题（帆船比赛向量建模）的核心工具：把位移拆成向量再算做功 / 夹角。']);
+  }
+  else if(type==='deriv'){
+    if(near(v.m, 0, 0.05)) out.push(['impact','f\'(x₀)≈0 ⇒ 该点是极值点候选（需结合两侧符号判定极大 / 极小），对应「含参单调性 / 极值」真题设问。']);
+    else out.push(['impact', (v.m>0?'切线斜率为正 ⇒ 该点附近函数递增；':'切线斜率为负 ⇒ 该点附近函数递减；') + '切线斜率即导数，是研究函数单调性的钥匙。']);
+    out.push(['real','f(x)=x³−3x 是导数入门经典，思路与 2024 新高考Ⅰ卷第18题（导数压轴：中心对称 + 恒成立）一致——先求 f\' 再研究单调性与最值。']);
+  }
+  else if(type==='seq'){
+    if(v.type==='ar'){
+      if(near(v.d,0,0.06)) out.push(['impact','d=0 ⇒ 常数列；d>0 递增、d<0 递减（真题「单调数列」判定）。']);
+    } else {
+      if(v.d < 0) out.push(['impact','q<0 时等比数列正负交替（摆动数列），是真题易错点：求和与绝对值需特别小心。']);
+      else if(near(v.d,1,0.06)) out.push(['impact','q=1 ⇒ 常数列；0<q<1 递减、q>1 递增。']);
+    }
+    out.push(['real','数列求和与性质是 2025 新高考Ⅰ卷第16题（数列）与 2024 第19题（可分数列探究）的考查对象，常结合等差 / 等比通项与求和公式。']);
+  }
+  else if(type==='triangle'){
+    if(near(v.A, 90, 3)) out.push(['impact','A=90° 时退化为直角三角形，余弦定理即勾股定理 a²=b²+c²。']);
+    if(near(v.A, 60, 3) || near(v.A,120,3)) out.push(['impact','A=60°/120° 是解三角形经典角（真题常用其制造对称或特殊值），注意 sin120°=sin60°、cos120°=−cos60°。']);
+    out.push(['real','解三角形是新高考Ⅰ卷解答题稳定题型，常结合正余弦定理、面积公式与三角恒等变换综合设问。']);
+  }
+  else if(type==='binom'){
+    if(near(v.p, 0.5, 0.03)) out.push(['impact','p=0.5 时分布关于均值对称（二项分布最对称的情形），是真题「概率最大项」的经典背景。']);
+    if(v.p < 0.5) out.push(['impact','p<0.5 时分布左偏（概率质量集中在小 k）；p>0.5 时右偏。']);
+    out.push(['real','二项分布及其期望、方差是 2024 新高考Ⅰ卷第14题与 2025 第14题（概率与期望）的考查对象，常与「有 / 无放回」区分（放回→二项，不放→超几何）。']);
+  }
+  if(!out.length) return '';
+  let h = '<div class="linkbox">';
+  out.forEach(n=>{ const c = n[0]==='real' ? 'rl-real' : 'rl-impact'; const ic = n[0]==='real' ? '📌 真题联动' : '⚠ 影响提示'; h += `<div class="${c}"><span class="rl-ic">${ic}：</span>${n[1]}</div>`; });
+  h += '</div>';
+  return h;
+}
+
+function initDemo(type,box){ ({trig:demoTrig,quad:demoQuad,conic:demoConic,vector:demoVector,deriv:demoDeriv,seq:demoSeq,triangle:demoTri,binom:demoBinom})[type](box); }
+
+render("all");
+
+// 搜索
+document.getElementById("search").addEventListener("input", e=>{
+  const v = e.target.value.trim();
+  document.querySelectorAll(".kc").forEach(kc=>{
+    const txt = kc.textContent;
+    kc.style.display = (!v || txt.includes(v)) ? "" : "none";
+  });
+});
+// 过滤chips
+document.querySelectorAll(".chip").forEach(c=>{
+  c.addEventListener("click",()=>{
+    document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+    c.classList.add("active");
+    render(c.dataset.f);
+  });
+});
+
+// ===== 首页导航：顶栏 + hero 模块卡片，复用 chip 筛选逻辑 =====
+function setChip(f){
+  var chip = document.querySelector('.chip[data-f="'+f+'"]');
+  if(chip){
+    document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+    chip.classList.add("active");
+    render(f);
+  }
+}
+document.querySelectorAll('[data-nav]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var f = a.dataset.nav;
+    if(f === 'home'){ setChip('all'); window.scrollTo({top:0, behavior:'smooth'}); }
+    else { setChip(f); document.getElementById('app').scrollIntoView({behavior:'smooth'}); }
+  });
+});
+document.querySelectorAll('[data-action="export"]').forEach(function(el){
+  el.addEventListener('click', function(){ document.getElementById('expBtn').click(); });
+});
+
+// ============ 导出可打印「参数探究题单」 ============
+document.getElementById("expBtn").addEventListener("click", function(){
+  var items = [
+    ["1. 三角函数  y = A·sin(ωx+φ)+k", "拖动 A、ω、φ、k 四个滑块观察波形：", [
+      "当 ω=2 时，周期 T=2π/ω = ？写出计算过程。",
+      "初相 φ 对图象有什么影响？正、负各举一例说明平移方向。",
+      "给出一个使 f(x) 为奇函数的参数组合 (A,ω,φ,k)，并说明理由。"
+    ]],
+    ["2. 二次函数  f(x)=ax²+bx+c", "拖动 a、b、c 三个滑块：", [
+      "当 a<0 时，图象开口方向与最值（最大 / 最小）如何？",
+      "调整参数使判别式 Δ=b²−4ac=0，找到一组 (a,b,c)，并说明此时图象与 x 轴的关系。",
+      "图象与 x 轴交点个数由什么决定？列举 Δ>0、=0、<0 三种情况。"
+    ]],
+    ["3. 圆锥曲线（椭圆 / 双曲线）", "切换椭圆 / 双曲线并调 a、b：", [
+      "椭圆的离心率 e 取值范围是什么？a 与 b 谁大？",
+      "找出一组使 e=√2/2 的 (a,b)，并验证 e=c/a。",
+      "双曲线何时 e=√2（等轴双曲线）？此时渐近线有何特殊关系？"
+    ]],
+    ["4. 平面向量（和、投影、数量积）", "拖动两向量 u、v 的模与方向：", [
+      "何时 u·v=0？此时两向量有何几何关系？",
+      "u 在 v 上的投影长为 0 意味着什么？与第1问是否一致？",
+      "固定 v，改变 ∠u，观察 u+v 的长度如何随夹角变化。"
+    ]],
+    ["5. 导数与切线  f(x)=x³−3x", "拖动切点 x₀：", [
+      "x₀=1 处的切线斜率是多少？写出切线方程。",
+      "何时切线水平（斜率为0）？对应函数图象的什么点？",
+      "由 f'(x)=3x²−3 说明函数单调性随 x 的变化。"
+    ]],
+    ["6. 数列（等差 / 等比）", "切换等差 / 等比并调 a₁、d/q：", [
+      "等差数列 d<0 时数列如何变化？d=0 呢？",
+      "等比数列 q<0 时为什么正负交替？举前3项说明。",
+      "分别写出等差、等比数列的前 n 项和公式。"
+    ]],
+    ["7. 解三角形", "拖动 b、c、∠A：", [
+      "当 A=90° 时，a² 等于什么（用余弦定理说明）？",
+      "当 A=60° 时，面积 S=½bc·sinA 等于多少？",
+      "用余弦定理求出 a，并说明它与直角三角形勾股定理的联系。"
+    ]],
+    ["8. 二项分布  X~B(n,p)", "拖动 n、p：", [
+      "p=0.5 时分布有何特征？期望与方差公式是什么？",
+      "p<0.5 与 p>0.5 时分布形状（左偏 / 右偏）有何不同？",
+      "举一个“放回抽样→二项、不放回→超几何”的实例并说明区别。"
+    ]]
+  ];
+  var body = items.map(function(it){
+    var lis = it[2].map(function(s){ return '<li>'+s+'<div class="blank"></div></li>'; }).join("");
+    return '<div class="q"><div class="qt">'+it[0]+'</div><div class="hint">'+it[1]+'</div><ol>'+lis+'</ol></div>';
+  }).join("");
+  var html = '<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>参数探究题单 · 新高考Ⅰ卷数学</title>'
+    + '<style>@page{margin:16mm;}body{font-family:-apple-system,"Microsoft YaHei",sans-serif;color:#222;font-size:14px;line-height:1.65;}'
+    + 'h1{font-size:20px;text-align:center;margin:0 0 4px;}.sub{text-align:center;color:#64748b;font-size:12px;margin-bottom:18px;}'
+    + '.q{border:1px solid #d1d5db;border-radius:8px;padding:12px 14px;margin-bottom:14px;page-break-inside:avoid;}'
+    + '.qt{font-weight:700;color:#2563eb;margin-bottom:4px;}.hint{color:#64748b;font-size:12.5px;margin-bottom:6px;}'
+    + 'ol{margin:0;padding-left:22px;}li{margin-bottom:6px;}.blank{border-bottom:1px solid #94a3b8;height:28px;margin-top:2px;}'
+    + '.bar{position:fixed;top:10px;right:14px;}.bar button{padding:8px 16px;border-radius:8px;border:1px solid #2563eb;background:#2563eb;color:#fff;font-size:13px;cursor:pointer;}'
+    + '@media print{.bar{display:none;}}</style></head><body>'
+    + '<button class="bar" onclick="window.print()">🖨 打印 / 保存为PDF</button>'
+    + '<h1>参数探究题单 · 新高考Ⅰ卷数学</h1>'
+    + '<div class="sub">对应网页「七、参数动态演示」8 个交互组件 · 拖动滑块探究后作答 · 共 '+items.length+' 题</div>'
+    + body + '<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function (e) {
+        console.log('PWA 注册失败（不影响离线使用）：', e);
+      });
+    });
+  }
+</script>
+</body></html>';
+  var w = window.open("", "_blank");
+  if(!w){ alert("浏览器拦截了弹出窗口，请允许本页弹出后重试。"); return; }
+  w.document.open(); w.document.write(html); w.document.close();
+});
+</script>
+</body>
+</html>

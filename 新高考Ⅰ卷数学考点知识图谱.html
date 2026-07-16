@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全国新高考Ⅰ卷·数学考点知识图谱</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  body { display: flex; background: #f5f7fa; color: #1f2937; }
+  #stage { flex: 1; position: relative; overflow: hidden; }
+  svg { width: 100%; height: 100%; display: block; cursor: grab; }
+  svg.dragging { cursor: grabbing; }
+  .panel {
+    width: 340px; background: #fff; border-left: 1px solid #e5e7eb;
+    padding: 20px; overflow-y: auto; box-shadow: -2px 0 8px rgba(0,0,0,.04);
+  }
+  .panel h1 { font-size: 18px; margin-bottom: 4px; color: #111827; }
+  .panel .sub { font-size: 12px; color: #6b7280; margin-bottom: 16px; line-height: 1.5; }
+  .card { display: none; }
+  .card.active { display: block; }
+  .card .tag {
+    display: inline-block; font-size: 12px; color: #fff; padding: 2px 10px;
+    border-radius: 999px; margin-bottom: 10px;
+  }
+  .card h2 { font-size: 16px; margin-bottom: 8px; }
+  .card p { font-size: 13px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+  .card .rel { font-size: 12px; color: #6b7280; }
+  .card .rel b { color: #111827; }
+  .legend { margin-top: 18px; border-top: 1px dashed #e5e7eb; padding-top: 14px; }
+  .legend .row { display: flex; align-items: center; font-size: 12px; margin-bottom: 7px; color: #374151; }
+  .legend .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; flex: none; }
+  .hint { font-size: 11px; color: #9ca3af; margin-top: 14px; line-height: 1.6; }
+  .node-text { font-size: 12px; fill: #1f2937; pointer-events: none; user-select: none; }
+  .node-text.root { font-size: 14px; font-weight: 700; fill: #fff; }
+  .node-text.hub { font-size: 13px; font-weight: 700; fill: #fff; }
+  .link { stroke: #cbd5e1; stroke-width: 1.2; }
+  .link.cross { stroke: #f59e0b; stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .node-circle { cursor: pointer; transition: opacity .15s; }
+  .dim { opacity: .12 !important; }
+  .fade { opacity: .12 !important; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="graph"></svg>
+</div>
+<div class="panel">
+  <h1>新高考Ⅰ卷·数学考点图谱</h1>
+  <div class="sub">节点＝考点，连线＝知识关联。橙色虚线为跨主题综合考点（命题压轴高发区）。悬停/点击节点查看说明，可拖拽画布与节点。</div>
+
+  <div id="detail" class="card active">
+    <span class="tag" style="background:#111827">总览</span>
+    <h2>五大主题结构</h2>
+    <p>新高考Ⅰ卷数学（满分150，19题）不分文理，按《普通高中数学课程标准》五大主题命题：<br>
+    ① 预备知识　② 函数与导数　③ 几何与代数　④ 概率与统计　⑤ 数学建模与探究。</p>
+    <p>压轴重灾区集中在<b>函数导数</b>与<b>解析几何</b>两大主题（近年解答题第18、19题），强调"多想少算、反套路、反刷题"。</p>
+    <div class="rel">点击任意节点查看该考点的试卷位置与命题说明。</div>
+  </div>
+
+  <div class="legend">
+    <div class="row"><span class="dot" style="background:#111827"></span>核心 / 主题枢纽</div>
+    <div class="row"><span class="dot" style="background:#6b7280"></span>预备知识</div>
+    <div class="row"><span class="dot" style="background:#2563eb"></span>函数与导数</div>
+    <div class="row"><span class="dot" style="background:#16a34a"></span>几何与代数</div>
+    <div class="row"><span class="dot" style="background:#d97706"></span>概率与统计</div>
+    <div class="row"><span class="dot" style="background:#db2777"></span>数学建模与探究</div>
+  </div>
+  <div class="hint">交互：拖拽空白处平移 · 滚轮缩放 · 点击节点锁定详情 · 悬停高亮关联。</div>
+</div>
+
+<script>
+const GROUPS = {
+  root:  { color:"#111827", name:"核心" },
+  pre:   { color:"#6b7280", name:"预备知识" },
+  func:  { color:"#2563eb", name:"函数与导数" },
+  geo:   { color:"#16a34a", name:"几何与代数" },
+  prob:  { color:"#d97706", name:"概率与统计" },
+  model: { color:"#db2777", name:"数学建模与探究" },
+};
+
+// 节点：id, label, group, type(root|hub|leaf), note
+const nodes = [
+  { id:"R", label:"新高考Ⅰ卷·数学", group:"root", type:"root",
+    note:"满分150，19题结构：8单选(40)+3多选(18)+3填空(15)+5解答(77)。不分文理，教育部统一命题。" },
+
+  { id:"H_pre", label:"预备知识", group:"pre", type:"hub",
+    note:"基础盘，多在单选/填空前4题出现，送分但要稳。" },
+  { id:"pre1", label:"集合", group:"pre", type:"leaf",
+    note:"交并补运算、子集个数、元素性质。单选第1题常客。" },
+  { id:"pre2", label:"常用逻辑用语", group:"pre", type:"leaf",
+    note:"充要条件、命题真假、全称量词与存在量词。常与函数/数列结合考。" },
+  { id:"pre3", label:"不等式", group:"pre", type:"leaf",
+    note:"一元二次、基本不等式、绝对值。与函数最值、导数恒成立深度关联。" },
+  { id:"pre4", label:"复数", group:"pre", type:"leaf",
+    note:"四则运算、模、共轭、几何意义。单选高频，常连向量坐标。" },
+
+  { id:"H_func", label:"函数与导数", group:"func", type:"hub",
+    note:"卷面权重最高主题之一，压轴第19题主战场。" },
+  { id:"f1", label:"函数性质", group:"func", type:"leaf",
+    note:"单调性、奇偶性、周期性、对称性。贯穿全卷，是导数与数列的思想底座。" },
+  { id:"f2", label:"指数/对数/幂函数", group:"func", type:"leaf",
+    note:"图象与性质、比大小。单选/填空常考，常与导数结合。" },
+  { id:"f3", label:"三角函数图象性质", group:"func", type:"leaf",
+    note:"周期、振幅、相位、图象变换。填空与解答低频但稳定。" },
+  { id:"f4", label:"三角恒等变换", group:"func", type:"leaf",
+    note:"和差倍角、辅助角。解三角形与压轴求导的前置工具。" },
+  { id:"f5", label:"解三角形", group:"func", type:"leaf",
+    note:"正余弦定理、面积。解答题第15题左右稳定出现。" },
+  { id:"f6", label:"数列", group:"func", type:"leaf",
+    note:"等差等比、求和、递推、数学归纳。解答第17题常客，函数思想解题。" },
+  { id:"f7", label:"导数应用", group:"func", type:"leaf",
+    note:"切线、单调性、极值最值、不等式证明、零点。压轴第19题核心，反套路重灾区。" },
+
+  { id:"H_geo", label:"几何与代数", group:"geo", type:"hub",
+    note:"另一压轴主战场（解析几何），空间向量是立体几何标准解法。" },
+  { id:"g1", label:"平面向量", group:"geo", type:"leaf",
+    note:"线性运算、数量积、夹角、几何应用。连接复数、解析、立体几何的枢纽。" },
+  { id:"g2", label:"立体几何(位置关系)", group:"geo", type:"leaf",
+    note:"点线面平行垂直判定、体积表面积。解答第16题稳定题型。" },
+  { id:"g3", label:"空间向量与建系", group:"geo", type:"leaf",
+    note:"建系求法向量、线面角、二面角。立体几何解答题标准解法。" },
+  { id:"g4", label:"直线与圆", group:"geo", type:"leaf",
+    note:"方程、距离、弦长、圆的性质。解析几何基础，常作压轴第1问。" },
+  { id:"g5", label:"圆锥曲线", group:"geo", type:"leaf",
+    note:"椭圆/双曲线/抛物线定义性质、定点定值、最值。压轴第18题核心。" },
+
+  { id:"H_prob", label:"概率与统计", group:"prob", type:"hub",
+    note:"分值稳定，应用题情境新颖（如体育赛事、质量检测）。" },
+  { id:"p1", label:"计数原理", group:"prob", type:"leaf",
+    note:"排列组合、二项式定理。单选/填空常考，注意分类与分步。" },
+  { id:"p2", label:"概率", group:"prob", type:"leaf",
+    note:"古典概型、条件概率、独立事件、全概率。解答第14题左右。" },
+  { id:"p3", label:"随机变量", group:"prob", type:"leaf",
+    note:"分布列、期望方差、正态分布。解答第17题常客。" },
+  { id:"p4", label:"统计", group:"prob", type:"leaf",
+    note:"抽样、用样本估计总体、回归分析、独立性检验。与概率综合成解答题。" },
+
+  { id:"H_model", label:"数学建模与探究", group:"model", type:"hub",
+    note:"以新情境、新定义考查，是'反刷题'导向的真正落地处。" },
+  { id:"m1", label:"数学建模", group:"model", type:"leaf",
+    note:"实际应用题（如帆船比赛向量、碳排放），考查建模与知识迁移能力。" },
+  { id:"m2", label:"数学探究", group:"model", type:"leaf",
+    note:"新概念/新定义探究题，常置于压轴第11、19题，考查批判性思维与创新。" },
+];
+
+// 连线：普通主题内 + 跨主题综合(cross)
+const links = [
+  // 根到枢纽
+  {s:"R",t:"H_pre"},{s:"R",t:"H_func"},{s:"R",t:"H_geo"},{s:"R",t:"H_prob"},{s:"R",t:"H_model"},
+  // 预备
+  {s:"H_pre",t:"pre1"},{s:"H_pre",t:"pre2"},{s:"H_pre",t:"pre3"},{s:"H_pre",t:"pre4"},
+  // 函数
+  {s:"H_func",t:"f1"},{s:"H_func",t:"f2"},{s:"H_func",t:"f3"},{s:"H_func",t:"f4"},{s:"H_func",t:"f5"},{s:"H_func",t:"f6"},{s:"H_func",t:"f7"},
+  // 几何
+  {s:"H_geo",t:"g1"},{s:"H_geo",t:"g2"},{s:"H_geo",t:"g3"},{s:"H_geo",t:"g4"},{s:"H_geo",t:"g5"},
+  // 概率
+  {s:"H_prob",t:"p1"},{s:"H_prob",t:"p2"},{s:"H_prob",t:"p3"},{s:"H_prob",t:"p4"},
+  // 建模
+  {s:"H_model",t:"m1"},{s:"H_model",t:"m2"},
+
+  // 跨主题综合（压轴高发）
+  {s:"f1",t:"f7",cross:true},   // 函数性质↔导数
+  {s:"f1",t:"f6",cross:true},   // 函数性质↔数列
+  {s:"f1",t:"pre3",cross:true}, // 函数↔不等式
+  {s:"f3",t:"f5",cross:true},   // 三角↔解三角形
+  {s:"g1",t:"g4",cross:true},   // 向量↔直线圆
+  {s:"g1",t:"g5",cross:true},   // 向量↔圆锥曲线
+  {s:"g1",t:"g3",cross:true},   // 向量↔空间向量
+  {s:"g2",t:"g3",cross:true},   // 立体↔空间向量
+  {s:"p2",t:"p4",cross:true},   // 概率↔统计
+  {s:"pre4",t:"g1",cross:true}, // 复数↔向量
+  {s:"f7",t:"pre3",cross:true}, // 导数↔不等式
+  {s:"m1",t:"g1",cross:true},   // 建模↔向量
+  {s:"m2",t:"f7",cross:true},   // 探究↔导数
+];
+
+// ---------- 力导向布局 ----------
+const byId = {};
+nodes.forEach((n,i)=>{ n.x = Math.cos(i)*200 + 480; n.y = Math.sin(i*1.7)*200 + 380; n.vx=0; n.vy=0; byId[n.id]=n; });
+const W=960, H=760, cx=W/2, cy=H/2;
+function simulate(){
+  for(let it=0; it<420; it++){
+    // 斥力
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j];
+        let dx=a.x-b.x, dy=a.y-b.y; let d2=dx*dx+dy*dy+0.01; let d=Math.sqrt(d2);
+        let f=2600/d2; let fx=dx/d*f, fy=dy/d*f;
+        a.vx+=fx; a.vy+=fy; b.vx-=fx; b.vy-=fy;
+      }
+    }
+    // 弹簧
+    links.forEach(l=>{
+      const a=byId[l.s], b=byId[l.t];
+      let dx=b.x-a.x, dy=b.y-a.y; let d=Math.sqrt(dx*dx+dy*dy)+0.01;
+      let L = (a.type==="root"||b.type==="root")?120 : (a.type==="hub"||b.type==="hub")?78 : 60;
+      let f=(d-L)*0.035; let fx=dx/d*f, fy=dy/d*f;
+      a.vx+=fx; a.vy+=fy; b.vx-=fx; b.vy-=fy;
+    });
+    // 向心
+    nodes.forEach(n=>{ n.vx+=(cx-n.x)*0.006; n.vy+=(cy-n.y)*0.006; });
+    // 积分
+    nodes.forEach(n=>{ if(n.fixed) return; n.vx*=0.86; n.vy*=0.86; n.x+=n.vx; n.y+=n.vy; });
+  }
+}
+simulate();
+
+// ---------- 渲染 ----------
+const svg = document.getElementById("graph");
+const NS="http://www.w3.org/2000/svg";
+// 计算包围盒
+let minX=1e9,minY=1e9,maxX=-1e9,maxY=-1e9;
+nodes.forEach(n=>{minX=Math.min(minX,n.x);minY=Math.min(minY,n.y);maxX=Math.max(maxX,n.x);maxY=Math.max(maxY,n.y);});
+const pad=60;
+svg.setAttribute("viewBox",`${(minX-pad)} ${(minY-pad)} ${(maxX-minX)+pad*2} ${(maxY-minY)+pad*2}`);
+
+// 连线层
+const linkLayer=document.createElementNS(NS,"g");
+svg.appendChild(linkLayer);
+links.forEach(l=>{
+  const a=byId[l.s], b=byId[l.t];
+  const ln=document.createElementNS(NS,"line");
+  ln.setAttribute("x1",a.x); ln.setAttribute("y1",a.y);
+  ln.setAttribute("x2",b.x); ln.setAttribute("y2",b.y);
+  ln.setAttribute("class","link"+(l.cross?" cross":""));
+  l.el=ln; linkLayer.appendChild(ln);
+});
+
+// 节点层
+const nodeLayer=document.createElementNS(NS,"g");
+svg.appendChild(nodeLayer);
+nodes.forEach(n=>{
+  const g=document.createElementNS(NS,"g");
+  g.setAttribute("class","node-circle");
+  g.dataset.id=n.id;
+  const c=document.createElementNS(NS,"circle");
+  const r = n.type==="root"?26 : n.type==="hub"?18 : 11;
+  c.setAttribute("r",r);
+  c.setAttribute("fill", GROUPS[n.group].color);
+  c.setAttribute("stroke","#fff"); c.setAttribute("stroke-width", n.type==="leaf"?2:2.5);
+  if(n.type==="leaf"){ c.setAttribute("fill-opacity","0.92"); }
+  g.appendChild(c);
+  // 标签
+  const t=document.createElementNS(NS,"text");
+  t.setAttribute("class","node-text"+(n.type==="root"?" root":n.type==="hub"?" hub":""));
+  t.setAttribute("text-anchor","middle");
+  t.setAttribute("x", n.x);
+  t.setAttribute("y", n.y + (n.type==="leaf"? 3.5 : 4));
+  t.textContent=n.label;
+  g.appendChild(t);
+  n.el=g; n.circle=c; n.text=t;
+  nodeLayer.appendChild(g);
+
+  g.addEventListener("mouseenter",()=>highlight(n.id));
+  g.addEventListener("mouseleave",()=>{ if(!locked) clearHL(); });
+  g.addEventListener("click",(e)=>{ e.stopPropagation(); locked=n.id; showDetail(n); highlight(n.id); });
+});
+
+// 邻接
+const adj={}; nodes.forEach(n=>adj[n.id]=new Set());
+links.forEach(l=>{ adj[l.s].add(l.t); adj[l.t].add(l.s); });
+
+let locked=null;
+function highlight(id){
+  const keep=new Set([id,...adj[id]]);
+  nodes.forEach(n=>{
+    if(keep.has(n.id)){ n.el.classList.remove("dim"); }
+    else { n.el.classList.add("dim"); }
+  });
+  links.forEach(l=>{
+    if(l.s===id||l.t===id){ l.el.classList.remove("fade"); }
+    else { l.el.classList.add("fade"); }
+  });
+}
+function clearHL(){
+  nodes.forEach(n=>n.el.classList.remove("dim"));
+  links.forEach(l=>l.el.classList.remove("fade"));
+}
+
+function showDetail(n){
+  const detail=document.getElementById("detail");
+  const g=GROUPS[n.group];
+  const rels=[...adj[n.id]].filter(x=>x!==n.id).map(x=>byId[x].label);
+  detail.classList.add("active");
+  detail.innerHTML =
+    `<span class="tag" style="background:${g.color}">${g.name}${n.type==="hub"?" · 主题枢纽":n.type==="root"?" · 核心":""}</span>`+
+    `<h2>${n.label}</h2>`+
+    `<p>${n.note}</p>`+
+    (rels.length?`<div class="rel"><b>关联考点：</b>${rels.join("、")}</div>`:"");
+}
+
+// 拖拽节点
+let dragNode=null, dragMoved=false;
+function svgPoint(evt){
+  const pt=svg.createSVGPoint(); pt.x=evt.clientX; pt.y=evt.clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+svg.addEventListener("mousedown",e=>{
+  const g=e.target.closest(".node-circle");
+  if(g){ dragNode=byId[g.dataset.id]; dragNode.fixed=true; dragMoved=false; }
+  else { panning=true; panStart={x:e.clientX,y:e.clientY}; svg.classList.add("dragging"); }
+});
+svg.addEventListener("mousemove",e=>{
+  if(dragNode){
+    const p=svgPoint(e); dragNode.x=p.x; dragNode.y=p.y; dragNode.vx=0; dragNode.vy=0;
+    dragMoved=true; positionNode(dragNode);
+    // 实时更新连线
+    links.forEach(l=>{ if(l.s===dragNode.id||l.t===dragNode.id){ l.el.setAttribute("x1",byId[l.s].x); l.el.setAttribute("y1",byId[l.s].y); l.el.setAttribute("x2",byId[l.t].x); l.el.setAttribute("y2",byId[l.t].y);} });
+  } else if(panning){
+    const vb=svg.viewBox.baseVal;
+    const scale=vb.width/svg.clientWidth;
+    vb.x -= (e.clientX-panStart.x)*scale; vb.y -= (e.clientY-panStart.y)*scale;
+    panStart={x:e.clientX,y:e.clientY};
+  }
+});
+window.addEventListener("mouseup",()=>{
+  if(dragNode && !dragMoved){ /* click handled separately */ }
+  if(dragNode){ dragNode.fixed=false; }
+  dragNode=null; panning=false; svg.classList.remove("dragging");
+});
+function positionNode(n){ n.circle.setAttribute("cx",n.x); n.circle.setAttribute("cy",n.y); n.text.setAttribute("x",n.x); n.text.setAttribute("y",n.y+(n.type==="leaf"?3.5:4)); }
+
+let panning=false, panStart=null;
+// 滚轮缩放
+svg.addEventListener("wheel",e=>{
+  e.preventDefault();
+  const vb=svg.viewBox.baseVal;
+  const p=svgPoint(e);
+  const k = e.deltaY>0?1.1:0.9;
+  vb.x = p.x - (p.x-vb.x)*k; vb.y = p.y - (p.y-vb.y)*k;
+  vb.width*=k; vb.height*=k;
+},{passive:false});
+// 点击空白取消锁定
+svg.addEventListener("click",e=>{ if(!e.target.closest(".node-circle")){ locked=null; clearHL(); document.getElementById("detail").classList.remove("active"); document.getElementById("detail").innerHTML=ORIGINAL; document.getElementById("detail").classList.add("active"); } });
+const ORIGINAL = document.getElementById("detail").innerHTML;
+</script>
+</body>
+</html>
