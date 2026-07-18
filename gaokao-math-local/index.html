@@ -399,7 +399,15 @@ function render(filter){
     app.appendChild(themeEl);
   });
   document.querySelectorAll('.demo').forEach(d=>initDemo(d.dataset.demo, d));
-  if(window.MathJax) MathJax.typesetPromise && MathJax.typesetPromise();
+  // 确保 MathJax 完全就绪后再渲染公式（兼容 CDN 延迟 / 动态内容注入时序）
+  function typesetMath(){
+    if(window.MathJax && window.MathJax.typesetPromise){
+      MathJax.typesetPromise().catch(function(e){ console.warn("MathJax typeset:", e); });
+    } else {
+      setTimeout(typesetMath, 150);
+    }
+  }
+  typesetMath();
 }
 // ============ 参数动态演示 ============
 function svgEl(tag,attrs){ const e=document.createElementNS('http://www.w3.org/2000/svg',tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
