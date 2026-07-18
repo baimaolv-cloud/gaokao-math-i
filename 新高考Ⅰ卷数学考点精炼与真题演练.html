@@ -354,6 +354,7 @@ function render(filter){
   THEMES.forEach(t=>{
     const themeEl = document.createElement("div");
     themeEl.className = "theme";
+    themeEl.id = "theme-" + t.id;
     themeEl.innerHTML = `<div class="theme-head" style="background:${t.color}">${t.name}<span class="cnt">· ${t.kcs.length} 个考点</span></div>`;
     t.kcs.forEach(kc=>{
       const kcEl = document.createElement("div");
@@ -722,6 +723,12 @@ document.querySelectorAll('[data-nav]').forEach(function(a){
     e.preventDefault();
     var f = a.dataset.nav;
     if(f === 'home'){ setChip('all'); window.scrollTo({top:0, behavior:'smooth'}); }
+    else if(f === 'comprehensive'){
+      // 定位到网页最底部的第8专题「八、多知识点综合题」（显示全部后滚动，非过滤）
+      setChip('all');
+      var target = document.getElementById('theme-comprehensive');
+      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
     else { setChip(f); document.getElementById('app').scrollIntoView({behavior:'smooth'}); }
   });
 });
